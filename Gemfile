@@ -7,6 +7,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem "omniauth-google-oauth2", "~> 0.2.1"
+gem 'figaro'
+
 
 group :development do
   gem 'web-console'
