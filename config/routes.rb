@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
-  get 'sessions/create'
+devise_for :users
 
-  get 'sessions/destroy'
+  devise_scope :user do
+  root :to => 'devise/sessions#new'
+end
 
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+
+  resources :sessions, only: [:create, :destroy]
+  # resource :home, only: [:show]
+
+  # root to: "home#show"
 end
