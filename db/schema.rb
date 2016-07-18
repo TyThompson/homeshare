@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160715184409) do
     t.integer "home_id", null: false
     t.string "name", null: false
     t.text "description"
+    t.float "bill_value"
     t.integer "value", null: false
     t.integer "votes"
     t.integer "thumbs_up"
