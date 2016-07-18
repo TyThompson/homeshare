@@ -1,3 +1,10 @@
+User.delete_all
+Home.delete_all
+Chore.delete_all
+Bill.delete_all
+List.delete_all
+
+
 #Users
 maria = User.create(:email => 'maria@example.com', :password => 'password')
 ty = User.create(:email => 'ty@example.com', :password => 'password')
