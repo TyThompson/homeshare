@@ -45,7 +45,7 @@ class ChoresController < ApplicationController
 
   private
 
-  def set_chores
+  def set_chore
     begin
       @chore = Chore.find(params[:id])
     rescue
@@ -54,11 +54,7 @@ class ChoresController < ApplicationController
   end
 
   def chore_params
-    params.permit(:user_id, :home_id, :description)
-  end
-
-  def check_user
-    # render 'not_allowed' unless @question.user_id == params[:user_id]
+    params.permit(:user_id, :home_id, :name, :description, :bill_value, :value, :votes)
   end
 
 end
