@@ -5,8 +5,12 @@ Rails.application.routes.draw do
     resources :chores do
       post 'thumbs_up'
     end
-    resources :bills
-    resources :lists
+    resources :bills do
+      post 'completed'
+    end
+    resources :lists do
+      post 'completed'
+    end
   end
   # devise_scope :user do
   # root :to => 'devise/sessions#new'
