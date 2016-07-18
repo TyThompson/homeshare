@@ -32,4 +32,44 @@ ActiveRecord::Schema.define(version: 20160715184409) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "homes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.float "rent"
+    t.string "city"
+    t.datetime "created_at"
+  end
+
+  create_table "chores", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "home_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.integer "value", null: false
+    t.integer "votes"
+    t.integer "thumbs_up"
+    t.datetime "created_at", null: false
+    t.datetime "completed_at"
+  end
+
+  create_table "bills", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "home_id", null: false
+    t.string "name", null: false
+    t.float "amount", null: false
+    t.datetime "due"
+    t.datetime "created_at", null: false
+    t.datetime "completed_at"
+  end
+
+  create_table "shopping_lists", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "home_id", null: false
+    t.string "name", null: false
+    t.string "item", null: false
+    t.datetime "created_at", null: false
+    t.datetime "completed_at"
+  end
+
+
 end
