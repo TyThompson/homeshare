@@ -7,8 +7,8 @@ class User < ApplicationRecord
 
         validates :email, presence: true
         has_many :homes
-        has_many :chores
-        has_many :bills
-        has_many :lists
+        has_many :chores, :through => :homes
+        has_many :bills, :through => :homes
+        has_many :lists, :through => :homes
 
 end

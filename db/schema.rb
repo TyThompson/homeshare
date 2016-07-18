@@ -32,12 +32,20 @@ ActiveRecord::Schema.define(version: 20160715184409) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "users_homes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "home_id", null: false
+    t.integer "exp", default: 0, null: false
+    t.boolean "admin", default: "false", null: false
+    t.datetime "created_at", null: false
+  end
+
   create_table "homes", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name", null: false
     t.float "rent"
     t.string "city"
-    t.datetime "created_at"
+    t.datetime "created_at", null: false
   end
 
   create_table "chores", force: :cascade do |t|
