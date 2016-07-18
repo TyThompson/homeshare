@@ -15,12 +15,15 @@ class ChoresController < ApplicationController
   def create
     @chore = Chore.new(chore_params)
     @chore.thumbs_up = 0
-    # @chore.created_at Time.now
     if @chore.save
       render :show
     else
       render @chore.errors
     end
+  end
+
+  def new
+    create
   end
 
   def destroy
@@ -35,12 +38,16 @@ class ChoresController < ApplicationController
     end
   end
 
+  def edit
+    update
+  end
+
   def index
-    @chores = Chore.order('created_at DESC')
+    @chores = Chore.where(user_id: current_user.id)
   end
 
   def show
-
+    @chore = Chore.where(id: params[:id], home_id: params[:home_id])
   end
 
   private
