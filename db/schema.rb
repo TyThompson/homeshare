@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20160715184409) do
   end
 
   create_table "chores", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.integer "home_id", null: false
     t.string "name", null: false
     t.text "description"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20160715184409) do
   end
 
   create_table "bills", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.integer "home_id", null: false
     t.string "name", null: false
     t.float "amount", null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20160715184409) do
   end
 
   create_table "shopping_lists", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.integer "home_id", null: false
     t.string "name", null: false
     t.string "item", null: false
