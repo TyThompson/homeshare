@@ -11,14 +11,14 @@ end
 
 
 def index
-  @home = Home.find(params[:home_id])
+  @home = Home.find(params[:id])
   @lists = @home.lists.find_by(name: parsed_data["name"])
 end
 
 
 
 def show
-   @home = Home.find(params[:home_id])
+   @home = Home.find(params[:id])
    @list = @home.lists.find_by(name: parsed_data["name"])
 end
 
@@ -50,7 +50,7 @@ def update
 end
 
 def destroy
-  @home = Home.find(params[:home_id])
+  @home = Home.find(params[:id])
   @home.lists.find_by(name: parsed_data["name"]).delete
 end
 
