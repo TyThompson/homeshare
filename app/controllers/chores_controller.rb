@@ -1,6 +1,6 @@
 class ChoresController < ApplicationController
   # before_action :check_login, except: [:show, :index, :search]
-  # before_action :set_question, except: [:create, :index, :search]
+  before_action :set_chore, except: [:create, :new, :index]
   # before_action :check_user, only: [:update, :destroy]
 
   def thumbs_up
@@ -43,18 +43,19 @@ class ChoresController < ApplicationController
   end
 
   def index
-    @chores = Chore.where(user_id: current_user.id)
+    @home = Home.find_by(params[:id])
+    @chores = @home.chores
   end
 
   def show
-    @chore = Chore.where(id: params[:id], home_id: params[:home_id])
+    @chore
   end
 
   private
 
   def set_chore
     begin
-      @chore = Chore.find(params[:id])
+      @chore = Chore.where(id: params[:id], home_id: params[:home_id])
     rescue
       render 'not_found'
     end
