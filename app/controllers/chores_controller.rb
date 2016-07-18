@@ -15,7 +15,7 @@ class ChoresController < ApplicationController
   def create
     @chore = Chore.new(chore_params)
     @chore.thumbs_up = 0
-    @chore.created_at Time.now
+    # @chore.created_at Time.now
     if @chore.save
       render :show
     else
