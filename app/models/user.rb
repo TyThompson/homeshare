@@ -9,6 +9,6 @@ class User < ApplicationRecord
         has_many :homes
         has_many :chores
         has_many :bills
-        has_many :shopping_lists
+        has_many :lists
 
 end

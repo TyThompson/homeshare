@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20160715184409) do
     t.datetime "completed_at"
   end
 
-  create_table "shopping_lists", force: :cascade do |t|
+  create_table "lists", force: :cascade do |t|
     t.integer "user_id"
     t.integer "home_id", null: false
     t.string "name", null: false

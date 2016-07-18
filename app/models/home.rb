@@ -3,6 +3,6 @@ class Home < ActiveRecord::Base
   belongs_to :user
   has_many :chores, :dependent => :destroy
   has_many :bills, :dependent => :destroy
-  has_many :shopping_lists, :dependent => :destroy
+  has_many :lists, :dependent => :destroy
 
 end
