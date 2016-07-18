@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.5'
 gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'figaro'
 gem 'faker', '~> 1.6', '>= 1.6.5'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development do
   gem 'web-console'
