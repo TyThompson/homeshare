@@ -57,7 +57,7 @@ class ListsController < ApplicationController
 private
 
   def approved_params
-    params.require(:list).permit(:name, :item, :user_id, :home_id)
+    params.require(:list).permit(:name, :item)
   end
 
 end
