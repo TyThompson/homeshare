@@ -18,3 +18,11 @@ Rails.application.routes.draw do
 # end
 
 end
+
+resources :chores do
+  member do
+    put "like", to: "links#upvote"
+    put "dislike", to: "links#downvote"
+    get "votecount", to: "posts#votecount"
+  end
+end

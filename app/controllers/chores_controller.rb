@@ -2,6 +2,32 @@ class ChoresController < ApplicationController
   # before_action :check_login, except: [:show, :index, :search]
   before_action :set_chore, except: [:create, :new, :index]
   # before_action :check_user, only: [:update, :destroy]
+  acts_as_votable
+
+
+
+  def upvote
+  @chore.upvote_by current_user
+  respond_to do |format|
+    format.html {redirect_to :back}
+    format.json {render json: {status: :ok, count: @chore.score}}
+  end
+end
+
+def downvote
+  @chore.downvote_by current_user
+  respond_to do |format|
+    format.html {redirect_to :back}
+    format.json {render json: {status: :ok, count: @chore.score}}
+  end
+end
+
+def votecount
+  respond_to do |format|
+    format.html {redirect_to :back}
+    format.json {render json: {status: :ok, count: @chore.score}}
+  end
+end
 
   def thumbs_up
     @chore.thumbs_up+=1

@@ -11,6 +11,8 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'figaro'
 gem 'faker', '~> 1.6', '>= 1.6.5'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'acts_as_votable', '~> 0.10.0'
+
 
 group :development do
   gem 'web-console'

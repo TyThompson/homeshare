@@ -4,4 +4,8 @@ class Chore < ActiveRecord::Base
   belongs_to :home
   belongs_to :user
 
+  def score
+    self.get_upvotes.size - self.get_downvotes.size
+  end
+  
 end
