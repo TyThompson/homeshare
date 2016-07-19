@@ -4,7 +4,6 @@ class ChoresController < ApplicationController
   # before_action :check_user, only: [:update, :destroy]
 
 
-
   def upvote
   @chore.upvote_by current_user
   respond_to do |format|
@@ -24,18 +23,18 @@ end
 def votecount
   respond_to do |format|
     format.html {redirect_to :back}
-    format.json {render json: {status: :ok, count: @chore.score}}
+    format.json {render json: {status: :ok, chore_votes: @chore.score}}
   end
 end
 
-  def thumbs_up
-    @chore.thumbs_up+=1
-    if @chore.save
-      render :show
-    else
-      render @chore.errors
-    end
-  end
+  # def thumbs_up
+  #   @chore.thumbs_up+=1
+  #   if @chore.save
+  #     render :show
+  #   else
+  #     render @chore.errors
+  #   end
+  # end
 
   def create
     @chore = Chore.new(chore_params)
@@ -80,7 +79,7 @@ end
 
   def set_chore
     begin
-      @chore = Chore.where(id: params[:id], home_id: params[:home_id])
+      @chore = Chore.find_by(id: params[:id], home_id: params[:home_id])
     rescue
       render 'not_found'
     end

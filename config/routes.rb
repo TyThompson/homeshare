@@ -3,11 +3,10 @@ Rails.application.routes.draw do
   resources :users
   resources :homes do
     resources :chores do
-      post 'thumbs_up'
       member do
-        put "like", to: "links#upvote"
-        put "dislike", to: "links#downvote"
-        get "votecount", to: "posts#votecount"
+        put "like", to: "chores#upvote"
+        put "dislike", to: "chores#downvote"
+        get "votecount", to: "chores#votecount"
       end
     end
     resources :bills do
