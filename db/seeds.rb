@@ -7,7 +7,7 @@ UserHome.delete_all
 
 
 #Users
-maria = User.create(:email => 'maria@example.com', :password => 'password')
+maria = User.create(:email => 'maria@example.com', :password => 'password', :site_admin => true)
 ty = User.create(:email => 'ty@example.com', :password => 'password')
 
 20.times do User.create(:email => Faker::Internet.email,
