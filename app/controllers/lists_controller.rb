@@ -47,7 +47,7 @@ class ListsController < ApplicationController
     # @home = Home.find_by(params[:id])
     # @home.lists.find_by(name: parsed_data["name"]).delete
     @list = List.where(id: params[:id], home_id: params[:home_id])
-    @list.destroy 
+    @list.destroy
   end
 
 

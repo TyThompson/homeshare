@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :lists do
       post 'completed'
     end
+    resources :users, only: [:index]
   end
   # devise_scope :user do
   # root :to => 'devise/sessions#new'
