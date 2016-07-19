@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @home = Home.find(params[:id])
-    @users = @home.users.all
+    @home = Home.where(id: params[:home_id])
+    @users = @home.first.users.all 
   end
 
 end
