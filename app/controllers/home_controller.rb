@@ -1,7 +1,11 @@
 class HomesController < ApplicationController
   # before_action :check_login, except: [:show, :index, :search]
-  # before_action :set_question, except: [:create, :index, :search]
+  before_action :set_home, except: [:create, :new, :index]
   # before_action :check_user, only: [:update, :destroy]
+
+  def new
+    create
+  end
 
   def create
     @home = Home.new(home_params)
@@ -16,6 +20,10 @@ class HomesController < ApplicationController
     @home.destroy
   end
 
+  def edit
+    update
+  end
+
   def update
     if @home.update(home_params)
       render :show
@@ -25,11 +33,11 @@ class HomesController < ApplicationController
   end
 
   def index
-    @homes = Home.where(:user_id)
+    @homes = @home.all
   end
 
   def show
-
+    @home
   end
 
   private
