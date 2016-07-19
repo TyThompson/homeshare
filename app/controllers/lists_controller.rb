@@ -10,7 +10,7 @@ class ListsController < ApplicationController
   # end
 
   def index
-    @home = Home.find_by(params[:home_id])
+    @home = Home.find_by(id: params[:home_id])
     @lists = @home.lists
   end
 
