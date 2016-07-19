@@ -10,26 +10,35 @@ FactoryGirl.define do
     end
   end
 
-#   factory :item do
-#   name Faker::Beer.name
-#   description Faker::Beer.style
-#   price 5.00
-#   user
-#   shop
-# end
-#
-#
-# factory :shop do
-#   name "User Shop"
-#   description "my awesome shop"
-#   location "my town"
-#   user
-# end
+
+    factory :home do
+      name Faker::Lorem.word
+      user
+    end
 
 
-
-
-
-
-
+  factory :chore do
+    name Faker::Lorem.word
+    value Faker::Number.between(1, 100)
+    user
+    home
   end
+
+
+  factory :bill do
+    name Faker::Lorem.word
+    amount Faker::Commerce.price
+    user
+    home
+  end
+
+
+  factory :list do
+    name Faker::Lorem.word
+    item Faker::Lorem.word
+    user
+    home
+  end
+
+
+end
