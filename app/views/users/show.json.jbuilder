@@ -1,5 +1,5 @@
-json.users do
+json.user do
   json.housemate @user
   json.total_exp @total_exp
-  json.houses @houses
+  json.homes @homes
 end

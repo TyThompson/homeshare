@@ -1,3 +1,3 @@
-json.users do
-  json.housemates @users
+json.user_list do
+  json.users @users
 end
