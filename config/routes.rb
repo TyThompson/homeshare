@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resources :homes do
     resources :chores do
       post 'thumbs_up'
+      member do
+        put "like", to: "links#upvote"
+        put "dislike", to: "links#downvote"
+        get "votecount", to: "posts#votecount"
+      end
     end
     resources :bills do
       post 'completed'
@@ -17,12 +22,4 @@ Rails.application.routes.draw do
   # root :to => 'devise/sessions#new'
 # end
 
-end
-
-resources :chores do
-  member do
-    put "like", to: "links#upvote"
-    put "dislike", to: "links#downvote"
-    get "votecount", to: "posts#votecount"
-  end
 end

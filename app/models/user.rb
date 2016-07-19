@@ -10,5 +10,7 @@ class User < ApplicationRecord
         has_many :chores, :through => :homes
         has_many :bills, :through => :homes
         has_many :lists, :through => :homes
+        acts_as_voter
+
 
 end
