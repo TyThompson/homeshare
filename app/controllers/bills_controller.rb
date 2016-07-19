@@ -46,7 +46,7 @@ class BillsController < ApplicationController
 
   def set_bill
     begin
-      @bill = Bill.where(id: params[:id], home_id: params[:home_id])
+      @bill = Bill.find_by(id: params[:id], home_id: params[:home_id])
     rescue
       render 'not_found'
     end

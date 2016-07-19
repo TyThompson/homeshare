@@ -44,14 +44,13 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list = List.where(id: params[:id], home_id: params[:home_id])
     @list.destroy
   end
 
 private
   def set_list
     begin
-      @list = List.where(id: params[:id], home_id: params[:home_id])
+      @list = List.find_by(id: params[:id], home_id: params[:home_id])
     rescue
       render 'not_found'
     end
