@@ -27,18 +27,9 @@ def votecount
   end
 end
 
-  # def thumbs_up
-  #   @chore.thumbs_up+=1
-  #   if @chore.save
-  #     render :show
-  #   else
-  #     render @chore.errors
-  #   end
-  # end
 
   def create
     @chore = Chore.new(chore_params)
-    @chore.thumbs_up = 0
     if @chore.save
       render :show
     else
