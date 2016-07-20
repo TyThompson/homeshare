@@ -10,7 +10,7 @@ render_views
     sign_in user
 
     old_count = user.homes.count
-    response = post :create, home: {name: "My New Home"}
+    response = post :create, home: {name: "My New Home", creator_id: user.id}
 
     expect(response.status).to eq 201
     expect(user.homes.count).to eq old_count + 1
@@ -23,7 +23,7 @@ render_views
     user = create :user
     sign_in user
 
-    home = post :create, home: {name: "Initial Home Name"}
+    home = post :create, home: {name: "Initial Home Name", creator_id: user.id}
     home = user.homes.last
     update = post :update, home: {name: "Edited Home Name"}
 

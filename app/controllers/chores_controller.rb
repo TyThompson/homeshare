@@ -1,10 +1,10 @@
 class ChoresController < ApplicationController
   # before_action :check_login, except: [:show, :index, :search]
-  before_action :set_chore, except: [:create, :new, :index]
+  before_action :set_chore, except: [:create, :index]
   # before_action :check_user, only: [:update, :destroy]
 
 
-    def upvote
+  def upvote
     @chore.upvote_by current_user
     respond_to do |format|
       format.html {redirect_to :back}
@@ -38,10 +38,6 @@ class ChoresController < ApplicationController
     end
   end
 
-  def new
-    create
-  end
-
   def destroy
     @chore.destroy
   end
@@ -52,10 +48,6 @@ class ChoresController < ApplicationController
     else
       render @chore.errors
     end
-  end
-
-  def edit
-    update
   end
 
   def index

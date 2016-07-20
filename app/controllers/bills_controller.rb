@@ -1,6 +1,6 @@
 class BillsController < ApplicationController
   # before_action :check_login, except: [:show, :index, :search]
-  before_action :set_bill, except: [:create, :new, :index]
+  before_action :set_bill, except: [:create, :index]
   # before_action :check_user, only: [:update, :destroy]
 
   def create
@@ -13,10 +13,6 @@ class BillsController < ApplicationController
     end
   end
 
-  def new
-    create
-  end
-
   def destroy
     @bill.destroy
   end
@@ -27,10 +23,6 @@ class BillsController < ApplicationController
     else
       render @bill.errors
     end
-  end
-
-  def edit
-    update
   end
 
   def index
