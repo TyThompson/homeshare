@@ -77,7 +77,7 @@ end
   end
 
   def chore_params
-    params.permit(:user_id, :home_id, :name, :description, :bill_value, :value, :votes)
+    params.permit(:home_id, :name, :description, :bill_value, :value, :votes)
   end
 
 end

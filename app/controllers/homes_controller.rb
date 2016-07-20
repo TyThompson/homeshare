@@ -5,16 +5,18 @@ class HomesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    create
+    @home = Home.new
+    @home.user_id = current_user.id
   end
 
   def create
     @home = Home.new(home_params)
     @home.user_id = current_user.id
     if @home.save
+      UserHome.create!(user: current_user,
+        home: @home)
       render :show
     else
-      # render @home.errors
       render :error
     end
   end
@@ -54,6 +56,6 @@ class HomesController < ApplicationController
   end
 
   def home_params
-    params.permit(:name, :rent, :city, :created_at)
+    params.require(:home).permit(:name, :rent, :city, :created_at)
   end
 end
