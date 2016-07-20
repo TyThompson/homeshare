@@ -2,6 +2,7 @@ class HomesController < ApplicationController
   # before_action :check_login, except: [:show, :index, :search]
   before_action :set_home, except: [:create, :new, :index]
   # before_action :check_user, only: [:update, :destroy]
+  before_action :authenticate_user!
 
   def new
     create
@@ -9,10 +10,12 @@ class HomesController < ApplicationController
 
   def create
     @home = Home.new(home_params)
+    @home.user_id = current_user.id
     if @home.save
       render :show
     else
-      render @home.errors
+      # render @home.errors
+      render :error
     end
   end
 
@@ -51,6 +54,6 @@ class HomesController < ApplicationController
   end
 
   def home_params
-    params.permit(:user_id, :name, :rent, :city, :created_at)
+    params.permit(:name, :rent, :city, :created_at)
   end
 end

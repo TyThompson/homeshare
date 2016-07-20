@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
 
+  before_action :set_format
+
+  def set_format
+    request.format = :json 
+  end
+
     def check_user
       # render 'not_allowed' unless @question.user_id == params[:user_id]
     end

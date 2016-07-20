@@ -6,7 +6,8 @@ class User < ApplicationRecord
         #  :omniauth_providers => [:google]
 
         validates :email, presence: true
-        has_and_belongs_to_many :homes
+        has_many :user_homes
+        has_many :homes, through: :user_homes
         has_many :chores, :through => :homes
         has_many :bills, :through => :homes
         has_many :lists, :through => :homes

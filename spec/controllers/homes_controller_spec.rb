@@ -7,13 +7,17 @@ RSpec.describe HomesController, type: :controller do
     sign_in user
 
     old_count = user.homes.count
-    response = post :create, home: {name: "home_name"},  user_id: user.id#, home_id: home.id
+    response = post :create, home: {name: "home_name", user_id: user.id}
+    binding.pry
 
-    expect(response.status).to eq 302
-    expect(home.count).to eq old_count + 1
-    expect(home.last.name).to eq 'home_name'
+
+    # expect(response.status).to eq 302
+    expect(user.homes.count).to eq old_count + 1
+    expect(user.homes.last.name).to eq "home_name"
 
   end
+
+
 
 
 end
