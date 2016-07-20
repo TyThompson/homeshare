@@ -11,7 +11,7 @@ class HomesController < ApplicationController
 
   def create
     @home = Home.new(home_params)
-    @home.user_id = current_user.id
+    @home.creator_id = current_user.id
     if @home.save
       UserHome.create!(user: current_user,
         home: @home)

@@ -598,6 +598,7 @@
         1,
         1,
         1,
+        1,
         null,
         1,
         1,
@@ -854,6 +855,7 @@
       "/Users/Maria/Dropbox/homeshare/app/models/home.rb": [
         1,
         1,
+        null,
         1,
         1,
         1,
@@ -862,6 +864,6 @@
         null
       ]
     },
-    "timestamp": 1469037489
+    "timestamp": 1469038748
   }
 }

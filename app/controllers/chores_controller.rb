@@ -4,28 +4,28 @@ class ChoresController < ApplicationController
   # before_action :check_user, only: [:update, :destroy]
 
 
-  def upvote
-  @chore.upvote_by current_user
-  respond_to do |format|
-    format.html {redirect_to :back}
-    format.json {render json: {status: :ok, count: @chore.score}}
+    def upvote
+    @chore.upvote_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.json {render json: {status: :ok, count: @chore.score}}
+    end
   end
-end
 
-def downvote
-  @chore.downvote_by current_user
-  respond_to do |format|
-    format.html {redirect_to :back}
-    format.json {render json: {status: :ok, count: @chore.score}}
+  def downvote
+    @chore.downvote_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.json {render json: {status: :ok, count: @chore.score}}
+    end
   end
-end
 
-def votecount
-  respond_to do |format|
-    format.html {redirect_to :back}
-    format.json {render json: {status: :ok, chore_votes: @chore.score}}
+  def votecount
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.json {render json: {status: :ok, chore_votes: @chore.score}}
+    end
   end
-end
 
 
   def create
