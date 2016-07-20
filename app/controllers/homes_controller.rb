@@ -1,8 +1,8 @@
 class HomesController < ApplicationController
   # before_action :check_login, except: [:show, :index, :search]
-  before_action :set_home, except: [:create, :new, :index, :show]
+  # before_action :set_home, except: [:create, :new, :index, :show]
   # before_action :check_user, only: [:update, :destroy]
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def new
     @home = Home.new
