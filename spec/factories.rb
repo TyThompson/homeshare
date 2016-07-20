@@ -4,17 +4,17 @@ FactoryGirl.define do
     sequence(:email) { |n| "email@example#{n}.com" }
     password "hunter2"
     # admin false
-    #
-    # factory :admin do
-    #   admin true
-    # end
   end
 
-
-    factory :home do
-      name Faker::Lorem.word
-      user
-    end
+  # factory :creator do
+  #   association :creator, factory: :user
+  # end
+  #
+  #
+  # factory :home do
+  #   name Faker::Lorem.word
+  #   user
+  # end
 
 
   factory :chore do

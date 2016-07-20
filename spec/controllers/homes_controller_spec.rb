@@ -16,6 +16,20 @@ render_views
   end
 
 
+  it "lets users edit their homes" do
+    user = create :user
+    sign_in user
+
+    home = post :create, home: {name: "Initial Home Name"}
+    home = user.homes.last
+    update = post :update, home: {name: "Edited Home Name"}#, id: user.shops.last.id
+    binding.pry
+
+    # expect(user.homes.count).to eq 1
+    expect(user.homes.last.name).to eq "Edited Home Name"
+  end
+
+
   it "lets users delete homes" do
     user = create :user
     sign_in user
