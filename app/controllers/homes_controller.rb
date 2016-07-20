@@ -32,8 +32,7 @@ class HomesController < ApplicationController
 
   def update
     if @home.update(home_params)
-      binding.pry
-
+      binding.pry 
       render :show, status: 201
     else
       render :error
