@@ -16,9 +16,9 @@ end
 
 
 #Homes
-marias_home = Home.create(:name => "Maria's house", :user_id => maria.id)
+marias_home = Home.create(:name => "Maria's house", :creator_id => maria.id)
 
-tys_home = Home.create(:name => "Ty's house", :user_id => ty.id)
+tys_home = Home.create(:name => "Ty's house", :creator_id => ty.id)
 
 
 #Chores

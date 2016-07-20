@@ -6,7 +6,7 @@ class HomesController < ApplicationController
 
   def new
     @home = Home.new
-    @home.user_id = current_user.id
+    @home.creator.id = current_user.id
   end
 
   def create
@@ -15,7 +15,7 @@ class HomesController < ApplicationController
     if @home.save
       UserHome.create!(user: current_user,
         home: @home)
-      render :show
+      render :show, status: 201
     else
       render :error
     end
@@ -23,6 +23,7 @@ class HomesController < ApplicationController
 
   def destroy
     @home.destroy
+    render :action_successful, status: 200
   end
 
   def edit
