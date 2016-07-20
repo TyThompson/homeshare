@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/homes/:home_id/chores/new' => 'chores#new'
   post '/homes/:home_id/bills/new' => 'bills#new'
   post '/homes/:home_id/lists/new' => 'lists#new'
+  post '/users/new' => 'users#new'
 
   resources :homes do
     resources :chores do
