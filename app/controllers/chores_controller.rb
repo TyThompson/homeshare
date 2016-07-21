@@ -1,6 +1,7 @@
 class ChoresController < ApplicationController
   # before_action :check_login, except: [:show, :index, :search]
   before_action :set_chore, except: [:create, :index]
+  before_action :authenticate_user!
   # before_action :check_user, only: [:update, :destroy]
 
 
