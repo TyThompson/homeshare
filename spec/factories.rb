@@ -1,4 +1,14 @@
 FactoryGirl.define do
+  factory :item do
+    title "MyString"
+    description "MyString"
+    item_xp 1
+    list_id 1
+    item_creator 1
+    purchaser_id 1
+    list_id 1
+    home_id 1
+  end
 
   factory :user, aliases: [:creator, :chore_creator, :chore_assignee, :chore_completer] do
     sequence(:email) { |n| "email@example#{n}.com" }
