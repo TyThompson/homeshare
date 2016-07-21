@@ -4,7 +4,6 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :description
       t.integer :item_xp
-      t.integer :list_id
       t.integer :item_creator
       t.integer :purchaser_id
       t.integer :list_id

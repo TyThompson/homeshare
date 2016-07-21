@@ -13,6 +13,9 @@ class User < ApplicationRecord
         has_many :homes, through: :user_homes
         has_many :bills, :through => :homes
         has_many :lists, :through => :homes
+        has_many :purchased_items, class_name: 'Item'
+        has_many :created_items, class_name: 'Item'
+        
         acts_as_voter
 
 
