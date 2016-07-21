@@ -31,6 +31,7 @@ render_views
   end
 
 
+
   it "lets users delete homes" do
     user = create :user
     sign_in user

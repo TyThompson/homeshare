@@ -1,7 +1,7 @@
 class ChoresController < ApplicationController
   # before_action :check_login, except: [:show, :index, :search]
   before_action :set_chore, except: [:create, :index]
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # before_action :check_user, only: [:update, :destroy]
 
 
@@ -31,8 +31,9 @@ class ChoresController < ApplicationController
 
   def create
     @chore = Chore.new(chore_params)
-    @chore.creator_id = current_user.id
-    @chore.home_id = params[:home_id]
+    @chore.chore_creator_id = current_user.id
+    @home = Home.find_by(creator_id: current_user.id)
+    @chore.home_id = @home.id
     if @chore.save
       render :show
     else
