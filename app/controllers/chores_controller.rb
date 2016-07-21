@@ -31,8 +31,9 @@ class ChoresController < ApplicationController
   def create
     @chore = Chore.new(chore_params)
     @chore.user_id = current_user.id
+    @chore.home_id = params[:home_id]
     if @chore.save
-      render :show, status: 201
+      render :show
     else
       render :error
     end

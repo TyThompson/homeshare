@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :user do
+  factory :user, aliases: [:creator] do
     sequence(:email) { |n| "email@example#{n}.com" }
     password "hunter2"
     # admin false
@@ -11,13 +11,13 @@ FactoryGirl.define do
   # end
   #
   #
-  # factory :home do
-  #   name Faker::Lorem.word
-  #   user
-  # end
+  factory :home do
+    name Faker::Lorem.word
+    creator
+  end
 
 
-  factory :chore do
+  factory :chore, aliases: [:household_chore, :assigned_chore] do
     name Faker::Lorem.word
     value Faker::Number.between(1, 100)
     user
