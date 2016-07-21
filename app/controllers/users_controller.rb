@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-before_action :set_user, except: [:create, :new, :index]
-before_action :set_homes, except: [:create, :new, :index, :destroy]
+before_action :set_user, except: [:create, :index]
+before_action :set_homes, except: [:create, :index, :destroy]
   def show
     @total_exp = Chore.where(user_id: params[:id]).pluck(:value).sum
   end

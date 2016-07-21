@@ -1,26 +1,24 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {sessions: 'sessions',
                             registrations: 'registrations'}
-  resources :users
+  resources :users, except: [:new, :edit]
 
-  resources :homes do
-    resources :chores do
+  resources :homes, except: [:new, :edit] do
+    resources :chores, except: [:new, :edit] do
       member do
         put "like", to: "chores#upvote"
         put "dislike", to: "chores#downvote"
         get "votecount", to: "chores#votecount"
       end
     end
-    resources :bills do
+    resources :bills, except: [:new, :edit] do
       post 'completed'
     end
-    resources :lists do
+    resources :lists, except: [:new, :edit] do
       post 'completed'
     end
-    resources :users, only: [:index]
   end
   # devise_scope :user do
   # root :to => 'devise/sessions#new'
 # end
-
 end

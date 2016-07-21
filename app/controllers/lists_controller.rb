@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, except: [:create, :new, :index]
+  before_action :set_list, except: [:create, :index]
   # def parsed_data
   #   incoming_data = request.body.read
   #   begin
@@ -18,10 +18,6 @@ class ListsController < ApplicationController
     @list
   end
 
-  def new
-    create
-  end
-
   def create
     @list = List.new(list_params)
       if @list.save
@@ -29,10 +25,6 @@ class ListsController < ApplicationController
       else
         render @list.errors
       end
-  end
-
-  def edit
-    update
   end
 
   def update

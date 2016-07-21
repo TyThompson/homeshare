@@ -1,13 +1,7 @@
 class HomesController < ApplicationController
-  before_action :set_home, except: [:create, :new, :index, :show]
+  before_action :set_home, except: [:create, :index, :show]
   before_action :authenticate_user!
   # before_action :check_user, only: [:update, :destroy]
-
-
-  def new
-    @home = Home.new
-    @home.creator.id = current_user.id
-  end
 
   def create
     @home = Home.new(home_params)
@@ -24,10 +18,6 @@ class HomesController < ApplicationController
   def destroy
     @home.destroy
     render :action_successful, status: 200
-  end
-
-  def edit
-    update
   end
 
   def update
