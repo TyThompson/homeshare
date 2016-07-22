@@ -1,6 +1,5 @@
 class HomesController < ApplicationController
   before_action :set_home, except: [:create, :index, :show]
-  before_action :authenticate_user!
   # before_action :check_user, only: [:update, :destroy]
 
   def create
