@@ -32,10 +32,10 @@ end
 
 #Users_Homes
 marias_users_homes = UserHome.create(:user_id => maria.id, :home_id => marias_home.id,
- :exp => Chore.where(chore_completer_id: maria.id).pluck(:value).sum, :admin => "true")
+ :exp => Chore.where(chore_completer_id: maria.id, home_id: marias_home_id).pluck(:chore_xp).sum, :admin => "true")
 
 tys_users_homes = UserHome.create(:user_id => ty.id, :home_id => tys_home.id,
- :exp => Chore.where(chore_completer_id: ty.id).pluck(:value).sum, :admin => "true")
+ :exp => Chore.where(chore_completer_id: ty.id, home_id: tys_home_id).pluck(:chore_xp).sum, :admin => "true")
 
 #Bills
 5.times do Bill.create(:user => maria, :home_id => marias_home.id, :name => Faker::Lorem.word,
