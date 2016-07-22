@@ -29,7 +29,7 @@ FactoryGirl.define do
 
   factory :chore, aliases: [:household_chore, :assigned_chore] do
     name Faker::Lorem.word
-    value Faker::Number.between(1, 100)
+    chore_xp Faker::Number.between(1, 100)
     chore_creator
     home
   end

@@ -30,7 +30,7 @@ RSpec.describe ChoresController, type: :controller do
 
     old_count = home.chores.count
 
-    response = post :create, chore: {name: "Another Chore", value: 30, home_id: home.id}
+    response = post :create, chore: {name: "Another Chore", chore_xp: 30, home_id: home.id}
 
 
     expect(response.status).to eq 200
