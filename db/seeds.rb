@@ -23,11 +23,11 @@ tys_home = Home.create(:name => "Ty's house", :creator_id => ty.id)
 
 #Chores
 5.times do Chore.create(:chore_creator_id => ty.id, :home_id => marias_home.id, :name => Faker::Lorem.word,
-  :chore_xp => Faker::Number.between(1, 100), :chore_completer_id => maria.id )
+  :chore_xp => 100, :chore_completer_id => maria.id )
 end
 
 5.times do Chore.create(:chore_creator_id => maria.id, :home_id => tys_home.id, :name => Faker::Lorem.word,
-  :chore_xp => Faker::Number.between(1, 100), :chore_completer_id => ty.id )
+  :chore_xp => 100, :chore_completer_id => ty.id )
 end
 
 #Users_Homes
