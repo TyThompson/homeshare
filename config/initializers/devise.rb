@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'b894e66849b60af42067c1c1c1bac8ce8b43067310b3e432814a07f27ba931bc3f9acf626f0d8c0bfecc870b75eab820242a3cf529b40062535586e22f4b13e7'
+  # config.secret_key = '1b6bcf042a02b90c0910710b49f462f096f829e8b42a63967630010dad6c6b3efe557e1bcb9add27b9699e02fbd2f858e11c5c765462136fce930e88a96f178c'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -64,7 +64,7 @@ Devise.setup do |config|
   # given strategies, for example, `config.http_authenticatable = [:database]` will
   # enable it only for database authentication. The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
-  config.http_authenticatable = true
+  # config.http_authenticatable = false
 
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
@@ -90,12 +90,6 @@ Devise.setup do |config|
   # from the server. You can disable this option at your own risk.
   # config.clean_up_csrf_token_on_authentication = true
 
-  # When false, Devise will not attempt to reload routes on eager load.
-  # This can reduce the time taken to boot the app but if your application
-  # requires the Devise mappings to be loaded during boot time the application
-  # won't boot properly.
-  # config.reload_routes = true
-
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 11. If
   # using other algorithms, it sets how many times you want the password to be hashed.
@@ -108,7 +102,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '95d35f8f22f3c5ed3a22ffffe2894aa59f5bc3f1d6bea8a67daac326ff556b46fa0cba335b4f2a5a576ae72849c0af54a5b777a50c1afb6d14cb0828f0c9903f'
+  # config.pepper = '709a54743b7dd48a3a79ec770a9f3c48d18d9b10d6fd7ad383523a172b54dae9d03097bb1c6a913f9faefcb5059f384922461ab795975b4fceace162cbfc2e5e'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
@@ -253,10 +247,26 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  # config.warden do |manager|
-  #   manager.intercept_401 = false
-  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
-  # end
+  class CustomStrategy < Devise::Strategies::Base
+    def valid?
+      request.env["HTTP_AUTHORIZATION"].present?
+    end
+
+    def authenticate!
+      email = request.env["HTTP_AUTHORIZATION"]
+      user  = User.find_by email: email
+      if user
+        success! user
+      else
+        fail! "No user matches that email"
+      end
+    end
+  end
+
+  config.warden do |manager|
+    manager.strategies.add(:auth_header, CustomStrategy)
+    manager.default_strategies(scope: :user).unshift :auth_header
+  end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
