@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20160722175550) do
     t.integer  "exp",        default: 0,     null: false
     t.boolean  "admin",      default: false, null: false
     t.datetime "created_at",                 null: false
-    t.integer  "level"
+    t.integer  "user_level"
   end
 
   create_table "users", force: :cascade do |t|

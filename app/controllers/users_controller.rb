@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 before_action :set_user, except: [:create, :index]
 before_action :set_homes, except: [:create, :index, :destroy]
   def show
-    @total_exp = Chore.where(user_id: params[:id]).pluck(:value).sum
+    @total_exp = Chore.where(user_id: params[:id]).pluck(:chore_xp).sum
   end
 
   def index
