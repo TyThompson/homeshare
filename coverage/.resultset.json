@@ -35,7 +35,6 @@
         1,
         null,
         1,
-        0,
         null,
         null,
         0,
@@ -567,6 +566,16 @@
       ],
       "/Users/Maria/Dropbox/homeshare/spec/factories.rb": [
         1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         null,
         1,
         4,
@@ -653,6 +662,9 @@
         1,
         1,
         1,
+        1,
+        1,
+        null,
         1,
         null,
         null,
@@ -882,10 +894,25 @@
         null,
         null
       ],
-      "/Users/Maria/Dropbox/homeshare/app/models/home.rb": [
+      "/Users/Maria/Dropbox/homeshare/spec/models/item_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/Maria/Dropbox/homeshare/app/models/item.rb": [
+        1,
+        1,
         1,
         1,
         null,
+        null
+      ],
+      "/Users/Maria/Dropbox/homeshare/app/models/home.rb": [
+        1,
+        1,
+        1,
         1,
         1,
         1,
@@ -933,10 +960,11 @@
         1,
         1,
         1,
+        1,
         null,
         null
       ]
     },
-    "timestamp": 1469117803
+    "timestamp": 1469198030
   }
 }

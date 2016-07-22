@@ -36,4 +36,5 @@ group :development, :test do
   gem 'faker', '~> 1.6', '>= 1.6.5'
   gem 'factory_girl_rails'
   gem 'simplecov'
+  gem 'spring-commands-rspec'
 end
