@@ -14,14 +14,14 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-07-22T11:08:50-04:00">2016-07-22T11:08:50-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-07-22T12:04:14-04:00">2016-07-22T12:04:14-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">77.01%</span></span>
+    (<span class="covered_percent"><span class="red">77.14%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
@@ -32,8 +32,8 @@
   <a name="AllFiles"></a>
   <div>
     <b>16</b> files in total.
-    <b>174</b> relevant lines. 
-    <span class="green"><b>134</b> lines covered</span> and
+    <b>175</b> relevant lines. 
+    <span class="green"><b>135</b> lines covered</span> and
     <span class="red"><b>40</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -122,10 +122,10 @@
       
       <tr>
         <td class="strong"><a href="#38ea493d2f7ae2fa6c1a4f79b0e2e4459d0c8fbb" class="src_link" title="app/models/chore.rb">app/models/chore.rb</a></td>
-        <td class="yellow strong">90.0 %</td>
-        <td>16</td>
+        <td class="green strong">90.91 %</td>
+        <td>18</td>
+        <td>11</td>
         <td>10</td>
-        <td>9</td>
         <td>1</td>
         <td>0.9</td>
       </tr>
@@ -825,7 +825,7 @@
         <li class="missed" data-hits="0" data-linenumber="76">
           
           
-          <code class="ruby">    params.require(:chore).permit(:home_id, :name, :description, :bill_value, :value, :votes)</code>
+          <code class="ruby">    params.require(:chore).permit(:name, :description, :bill_value, :value, :votes)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="77">
@@ -1333,10 +1333,10 @@
         <div class="source_table" id="38ea493d2f7ae2fa6c1a4f79b0e2e4459d0c8fbb">
   <div class="header">
     <h3>app/models/chore.rb</h3>
-    <h4><span class="yellow">90.0 %</span> covered</h4>
+    <h4><span class="green">90.91 %</span> covered</h4>
     <div>
-      <b>10</b> relevant lines. 
-      <span class="green"><b>9</b> lines covered</span> and
+      <b>11</b> relevant lines. 
+      <span class="green"><b>10</b> lines covered</span> and
       <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
@@ -1362,79 +1362,91 @@
           <code class="ruby">  validates :home_id, presence: true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="4">
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates_numericality_of :chore_xp, less_than_or_equal_to: 100 #:in =&gt; 1..99</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="6">
           
-          <code class="ruby">  belongs_to :home</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="6">
-          <span class="hits">1</span>
           
-          <code class="ruby">  belongs_to :chore_creator, class_name: &#39;User&#39;</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
-          <code class="ruby">  belongs_to :chore_completer, class_name: &#39;User&#39;</code>
+          <code class="ruby">  belongs_to :home</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
-          <code class="ruby">  belongs_to :chore_assignee, class_name: &#39;User&#39;</code>
+          <code class="ruby">  belongs_to :chore_creator, class_name: &#39;User&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
+          <code class="ruby">  belongs_to :chore_completer, class_name: &#39;User&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  belongs_to :chore_assignee, class_name: &#39;User&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
           <code class="ruby">  acts_as_votable</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="12">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="11">
+        <li class="never" data-hits="" data-linenumber="13">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="12">
+        <li class="covered" data-hits="1" data-linenumber="14">
           <span class="hits">1</span>
           
           <code class="ruby">  def score</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="13">
+        <li class="missed" data-hits="0" data-linenumber="15">
           
           
           <code class="ruby">    self.get_upvotes.size - self.get_downvotes.size</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="never" data-hits="" data-linenumber="16">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="15">
+        <li class="never" data-hits="" data-linenumber="17">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="never" data-hits="" data-linenumber="18">
           
           
           <code class="ruby">end</code>
