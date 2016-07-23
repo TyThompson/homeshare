@@ -5,27 +5,14 @@ class ChoresController < ApplicationController
   # before_action :check_user, only: [:update, :destroy]
 
 
-  def upvote
-    @chore.upvote_by current_user
-    respond_to do |format|
-      format.html {redirect_to :back}
-      format.json {render json: {status: :ok, count: @chore.score}}
-    end
+  def index
+    @home = Home.find_by(params[:id])
+    @chores = @home.chores
   end
 
-  def downvote
-    @chore.downvote_by current_user
-    respond_to do |format|
-      format.html {redirect_to :back}
-      format.json {render json: {status: :ok, count: @chore.score}}
-    end
-  end
 
-  def votecount
-    respond_to do |format|
-      format.html {redirect_to :back}
-      format.json {render json: {status: :ok, chore_votes: @chore.score}}
-    end
+  def show
+    @chore
   end
 
 
@@ -41,9 +28,6 @@ class ChoresController < ApplicationController
     end
   end
 
-  def destroy
-    @chore.destroy
-  end
 
   def update
     if @chore.update(chore_params)
@@ -53,14 +37,45 @@ class ChoresController < ApplicationController
     end
   end
 
-  def index
-    @home = Home.find_by(params[:id])
-    @chores = @home.chores
+
+  def completed
+    @chore.chore_completer_id = current_user.id 
   end
 
-  def show
-    @chore
+
+  def destroy
+    @chore.destroy
   end
+
+
+
+  def upvote
+    @chore.upvote_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.json {render json: {status: :ok, count: @chore.score}}
+    end
+  end
+
+
+  def downvote
+    @chore.downvote_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.json {render json: {status: :ok, count: @chore.score}}
+    end
+  end
+
+
+  def votecount
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.json {render json: {status: :ok, chore_votes: @chore.score}}
+    end
+  end
+
+
+
 
   private
 
@@ -73,7 +88,8 @@ class ChoresController < ApplicationController
   end
 
   def chore_params
-    params.require(:chore).permit(:home_id, :name, :description, :bill_value, :chore_xp, :votes)
+    params.require(:chore).permit(:home_id, :name, :description, :bill_value,
+    :chore_xp, :votes)
   end
 
 end

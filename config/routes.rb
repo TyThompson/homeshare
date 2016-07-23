@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         put "like", to: "chores#upvote"
         put "dislike", to: "chores#downvote"
         get "votecount", to: "chores#votecount"
+        post 'completed'
       end
     end
     resources :bills, except: [:new, :edit] do

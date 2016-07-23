@@ -3,7 +3,4 @@ class UserHome < ActiveRecord::Base
   belongs_to :user
 
 
-
-
-
 end

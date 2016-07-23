@@ -1,7 +1,7 @@
 class Chore < ActiveRecord::Base
   validates :name, presence: true
   validates :home_id, presence: true
-  validates_numericality_of :chore_xp, less_than_or_equal_to: 100 #:in => 1..99
+  validates_numericality_of :chore_xp, less_than_or_equal_to: 100 
 
 
   belongs_to :home
