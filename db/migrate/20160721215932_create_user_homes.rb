@@ -1,6 +1,6 @@
 class CreateUserHomes < ActiveRecord::Migration[5.0]
   def change
-    create_table :userhomes do |t|
+    create_table :user_homes do |t|
       t.integer  "user_id",                    null: false
       t.integer  "home_id",                    null: false
       t.integer  "exp",        default: 0,     null: false
