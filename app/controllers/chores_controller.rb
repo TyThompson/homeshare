@@ -38,8 +38,12 @@ class ChoresController < ApplicationController
   end
 
 
-  def completed
-    @chore.chore_completer_id = current_user.id 
+  def mark_complete
+    @chore.chore_completer_id = current_user.id
+  end
+
+  def completed_chores_list
+    @chores = Chore.where
   end
 
 
