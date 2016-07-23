@@ -4,12 +4,13 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :edit]
 
   resources :homes, except: [:new, :edit] do
-    resources :chores, except: [:new, :edit] do
+      get "completed_chores", to: "chores#completed_chores"
+  resources :chores, except: [:new, :edit] do
       member do
         put "like", to: "chores#upvote"
         put "dislike", to: "chores#downvote"
         get "votecount", to: "chores#votecount"
-        post 'completed'
+        post "mark_complete"
       end
     end
     resources :bills, except: [:new, :edit] do

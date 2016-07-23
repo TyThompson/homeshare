@@ -32,7 +32,7 @@ class HomesController < ApplicationController
   end
 
   def show
-    @home
+    @home = Home.find(params[:id])
   end
 
   private

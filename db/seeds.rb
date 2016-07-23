@@ -22,13 +22,23 @@ tys_home = Home.create(:name => "Ty's house", :creator_id => ty.id)
 
 
 #Chores
-5.times do Chore.create(:chore_creator_id => ty.id, :home_id => marias_home.id, :name => Faker::Lorem.word,
-  :chore_xp => 100, :chore_completer_id => maria.id )
+2.times do Chore.create(:chore_creator_id => ty.id, :home_id => marias_home.id, :name => Faker::Lorem.word,
+  :chore_xp => 100, :chore_completer_id => maria.id, completed: true )
 end
 
-5.times do Chore.create(:chore_creator_id => maria.id, :home_id => tys_home.id, :name => Faker::Lorem.word,
-  :chore_xp => 100, :chore_completer_id => ty.id )
+2.times do Chore.create(:chore_creator_id => ty.id, :home_id => marias_home.id, :name => Faker::Lorem.word,
+  :chore_xp => 100, :chore_completer_id => maria.id, completed: false )
 end
+
+
+2.times do Chore.create(:chore_creator_id => maria.id, :home_id => tys_home.id, :name => Faker::Lorem.word,
+  :chore_xp => 100, :chore_completer_id => ty.id, completed: true )
+end
+
+2.times do Chore.create(:chore_creator_id => maria.id, :home_id => tys_home.id, :name => Faker::Lorem.word,
+  :chore_xp => 100, :chore_completer_id => ty.id, completed: false )
+end
+
 
 #Users_Homes
 marias_users_homes = UserHome.create(:user_id => maria.id, :home_id => marias_home.id,

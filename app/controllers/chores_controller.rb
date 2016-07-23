@@ -1,6 +1,6 @@
 class ChoresController < ApplicationController
   # before_action :check_login, except: [:show, :index, :search]
-  before_action :set_chore, except: [:create, :index]
+  before_action :set_chore, except: [:create, :index, :completed_chores]
   # before_action :authenticate_user!
   # before_action :check_user, only: [:update, :destroy]
 
@@ -40,10 +40,13 @@ class ChoresController < ApplicationController
 
   def mark_complete
     @chore.chore_completer_id = current_user.id
+    @chore.completed = true
   end
 
-  def completed_chores_list
-    @chores = Chore.where
+
+  def completed_chores
+    @home = Home.find_by(params[:id])
+    @chores = @home.chores.where(completed: true).all
   end
 
 

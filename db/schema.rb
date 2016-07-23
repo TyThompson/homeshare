@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723000714) do
+ActiveRecord::Schema.define(version: 20160723030303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,18 +27,19 @@ ActiveRecord::Schema.define(version: 20160723000714) do
 
   create_table "chores", force: :cascade do |t|
     t.integer  "chore_creator_id"
-    t.integer  "home_id",            null: false
-    t.string   "name",               null: false
+    t.integer  "home_id",                            null: false
+    t.string   "name",                               null: false
     t.text     "description"
     t.float    "bill_value"
     t.integer  "votes"
     t.integer  "thumbs_up"
-    t.datetime "created_at",         null: false
+    t.datetime "created_at",                         null: false
     t.datetime "completed_at"
     t.integer  "chore_completer_id"
     t.integer  "chore_assignee_id"
     t.string   "avatar"
     t.integer  "chore_xp"
+    t.boolean  "completed",          default: false
   end
 
   create_table "homes", force: :cascade do |t|
