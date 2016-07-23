@@ -19,6 +19,7 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
 gem 'pg'
 gem 'httparty'
+gem 'faker', '~> 1.6', '>= 1.6.5'
 
 group :development do
   gem 'web-console'
