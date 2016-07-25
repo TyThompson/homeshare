@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :homes, except: [:new, :edit] do
       get "completed_chores", to: "chores#completed_chores"
+      get "all_chores", to: "chores#all_chores" #gets all completed and incomplete chores
   resources :chores, except: [:new, :edit] do
       member do
         put "like", to: "chores#upvote"
