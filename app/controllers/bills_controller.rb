@@ -34,6 +34,11 @@ class BillsController < ApplicationController
     @bill
   end
 
+  def pay_user
+    @venmo_user = User.where(email: current_user.email).pluck(:venmo_username)
+    @venmo_payee = User.where(email: params[:payee]).pluck(:venmo_username)
+  end
+
   private
 
   def set_bill
