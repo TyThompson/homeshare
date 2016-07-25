@@ -39,7 +39,7 @@ class ChoresController < ApplicationController
     if @chore.update(chore_params)
       render :show
     else
-      render @chore.errors
+      render :error 
     end
   end
 

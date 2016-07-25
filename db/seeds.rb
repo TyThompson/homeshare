@@ -58,10 +58,20 @@ end
 
 
 #Shopping Lists
-5.times do List.create(:user_id => maria.id, :home_id => marias_home.id, :name => Faker::Lorem.word,
+marias_shopping_list = List.create(:user_id => maria.id, :home_id => marias_home.id, :name => Faker::Lorem.word,
   :item => Faker::Lorem.word)
 end
 
-5.times do List.create(:user_id => ty.id, :home_id => tys_home.id, :name => Faker::Lorem.word,
+tys_shopping_list = List.create(:user_id => ty.id, :home_id => tys_home.id, :name => Faker::Lorem.word,
   :item => Faker::Lorem.word)
+end
+
+
+#Items
+5.times do Item.create(:home_id => marias_home.id, :list_id => marias_shopping_list.id, :title => Faker::Lorem.word,
+  :description => Faker::Lorem.sentence, :item_xp => 100, :purchaser_id => ty.id)
+end
+
+5.times do Item.create(:home_id => tys_home.id, :list_id => tys_shopping_list.id, :title => Faker::Lorem.word,
+  :description => Faker::Lorem.sentence, :item_xp => 100, :purchaser_id => maria.id)
 end

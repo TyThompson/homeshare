@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:create, :index]
 
 
-
   def show
     @item
   end
@@ -23,7 +22,7 @@ class ItemsController < ApplicationController
     if @item.update(chore_params)
       render :show
     else
-      render @item.errors
+      render :error
     end
   end
 
@@ -64,10 +63,10 @@ class ItemsController < ApplicationController
     end
   end
 
+
   def item_params
     params.require(:item).permit(:home_id, :list_id, :title, :item_xp)
   end
-
 
 
 end
