@@ -42,8 +42,11 @@ class ChoresController < ApplicationController
     @chore.chore_completer_id = current_user.id
     @chore.completed = true
     @chore.completed_at = Time.now
-    @chore.save 
-    render :action_successful, status: 200
+    if @chore.save
+      render :show
+    else
+      render :error
+    end
   end
 
 
