@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724164310) do
+ActiveRecord::Schema.define(version: 20160725203136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,8 +58,10 @@ ActiveRecord::Schema.define(version: 20160724164310) do
     t.integer  "purchaser_id"
     t.integer  "list_id"
     t.integer  "home_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "purchased",    default: false
+    t.datetime "purchased_at"
   end
 
   create_table "lists", force: :cascade do |t|

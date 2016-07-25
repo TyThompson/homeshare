@@ -10,6 +10,7 @@ class ChoresController < ApplicationController
     @chores = @home.chores.where(completed: false).all
   end
 
+
   def all_chores
     @home = Home.find_by(params[:id])
     @chores = @home.chores

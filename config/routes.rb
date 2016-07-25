@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     end
     resources :lists, except: [:new, :edit] do
       post 'completed'
+      resources :items, except: [:new, :edit] do
+        post "purchase_item", to: "items#purchase_item"
+        get "purchased_items", to: "items#purchased"
+      end
     end
   end
   # devise_scope :user do
