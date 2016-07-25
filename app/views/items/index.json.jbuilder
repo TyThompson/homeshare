@@ -1,3 +1,3 @@
 json.items do
-  json.shopping_list_items @items
+  json.unpurchased_items @items
 end
