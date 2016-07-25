@@ -49,7 +49,7 @@ private
   end
 
   def list_params
-    params.require(:list).permit(:name, :item, :user_id, :home_id)
+    params.require(:list).permit(:name, :user_id, :home_id)
   end
 
 end

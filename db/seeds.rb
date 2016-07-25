@@ -4,6 +4,7 @@ Chore.delete_all
 Bill.delete_all
 List.delete_all
 UserHome.delete_all
+Item.delete_all
 
 
 #Users
@@ -58,20 +59,26 @@ end
 
 
 #Shopping Lists
-marias_shopping_list = List.create(:user_id => maria.id, :home_id => marias_home.id, :name => Faker::Lorem.word,
-  :item => Faker::Lorem.word)
-end
+marias_shopping_list = List.create(:user_id => maria.id, :home_id => marias_home.id, :name => Faker::Lorem.word)
 
-tys_shopping_list = List.create(:user_id => ty.id, :home_id => tys_home.id, :name => Faker::Lorem.word,
-  :item => Faker::Lorem.word)
-end
+
+tys_shopping_list = List.create(:user_id => ty.id, :home_id => tys_home.id, :name => Faker::Lorem.word)
+
 
 
 #Items
-5.times do Item.create(:home_id => marias_home.id, :list_id => marias_shopping_list.id, :title => Faker::Lorem.word,
-  :description => Faker::Lorem.sentence, :item_xp => 100, :purchaser_id => ty.id)
+2.times do Item.create(:home_id => marias_home.id, :list_id => marias_shopping_list.id, :title => Faker::Lorem.word,
+  :description => Faker::Lorem.sentence, :item_xp => 100, :purchaser_id => ty.id, :purchased => false)
 end
 
-5.times do Item.create(:home_id => tys_home.id, :list_id => tys_shopping_list.id, :title => Faker::Lorem.word,
-  :description => Faker::Lorem.sentence, :item_xp => 100, :purchaser_id => maria.id)
+2.times do Item.create(:home_id => marias_home.id, :list_id => marias_shopping_list.id, :title => Faker::Lorem.word,
+  :description => Faker::Lorem.sentence, :item_xp => 100, :purchaser_id => ty.id, :purchased => true)
+end
+
+2.times do Item.create(:home_id => tys_home.id, :list_id => tys_shopping_list.id, :title => Faker::Lorem.word,
+  :description => Faker::Lorem.sentence, :item_xp => 100, :purchaser_id => maria.id, :purchased => false)
+end
+
+2.times do Item.create(:home_id => tys_home.id, :list_id => tys_shopping_list.id, :title => Faker::Lorem.word,
+  :description => Faker::Lorem.sentence, :item_xp => 100, :purchaser_id => maria.id, :purchased => true)
 end
