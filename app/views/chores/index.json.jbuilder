@@ -1,3 +1,3 @@
 json.chores do
-  json.all_chores @chores
+  json.incomplete @chores
 end

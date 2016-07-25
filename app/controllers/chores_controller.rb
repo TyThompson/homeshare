@@ -7,7 +7,7 @@ class ChoresController < ApplicationController
 
   def index
     @home = Home.find_by(params[:id])
-    @chores = @home.chores
+    @chores = @home.chores.where(completed: false).all
   end
 
 
@@ -41,6 +41,7 @@ class ChoresController < ApplicationController
   def mark_complete
     @chore.chore_completer_id = current_user.id
     @chore.completed = true
+    @chore.completed_at = Time.now 
   end
 
 

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   before_action :set_format
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   def set_format
     request.format = :json
   end
