@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   end
 
 
-  def purchase_item
+  def purchase
     @item.purchaser_id = current_user.id
     @item.purchased = true
     @item.purchased_at = Time.now
@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
   end
 
 
-  def purchased_items
+  def purchased
     @home = Home.find_by(params[:id])
     @items = @home.list.items.where(purchased: true)
   end
@@ -62,7 +62,7 @@ class ItemsController < ApplicationController
 
   def set_item
     begin
-      @item = Item.find_by(id: params[:id], home_id: params[:home_id], list_id: params[:list_id])
+      @item = Item.find_by(id: params[:id], home_id: params[:home_id])
     rescue
       render 'not_found'
     end

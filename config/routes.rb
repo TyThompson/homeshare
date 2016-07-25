@@ -18,10 +18,10 @@ Rails.application.routes.draw do
       post 'completed'
     end
     resource :list, except: [:new, :edit] do
-      post 'completed'
-      get "purchased_items", to: "items#purchased"
+      # post 'completed'
+      get "purchased", to: "items#purchased"
       resources :items, except: [:new, :edit] do
-        post "purchase_item", to: "items#purchase_item"
+        post "purchase", to: "items#purchase"
       end
     end
   end
