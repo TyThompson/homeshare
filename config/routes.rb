@@ -8,10 +8,13 @@ Rails.application.routes.draw do
   post "/api/register" => "api#register"
   get  "/api/me" => "api#me"
 
+
+# homes nest start
   resources :homes, except: [:new, :edit] do
-      get "completed_chores", to: "chores#completed_chores"
-      get "all_chores", to: "chores#all_chores" #gets all completed and incomplete chores
-  resources :chores, except: [:new, :edit] do
+    get "completed_chores", to: "chores#completed_chores"
+    get "all_chores", to: "chores#all_chores" #gets all completed and incomplete chores
+    resources :user_homes, except: [:new, :edit]
+    resources :chores, except: [:new, :edit] do
       member do
         put "like", to: "chores#upvote"
         put "dislike", to: "chores#downvote"
@@ -27,12 +30,10 @@ Rails.application.routes.draw do
       # post 'completed'
       resources :items, except: [:new, :edit] do
         member do
-        post "purchase"
-      end
+          post "purchase"
+        end
       end
     end
   end
-  # devise_scope :user do
-  # root :to => 'devise/sessions#new'
-# end
+#homes nest ends
 end

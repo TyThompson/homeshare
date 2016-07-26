@@ -21,6 +21,8 @@ marias_home = Home.create(:name => "Maria's house", :creator_id => maria.id)
 
 tys_home = Home.create(:name => "Ty's house", :creator_id => ty.id)
 
+eriks_home = Home.create(:name => "Erik's house", :creator_id => ty.id)
+
 
 #Chores
 2.times do Chore.create(:chore_creator_id => ty.id, :home_id => marias_home.id, :name => Faker::Lorem.word,
@@ -40,6 +42,9 @@ end
   :chore_xp => 100, :chore_completer_id => ty.id, completed: false )
 end
 
+2.times do Chore.create(:chore_creator_id => ty.id, :home_id => eriks_home.id, :name => Faker::Lorem.word,
+  :chore_xp => 100, :chore_completer_id => maria.id, completed: true )
+end
 
 #Users_Homes
 marias_users_homes = UserHome.create(:user_id => maria.id, :home_id => marias_home.id,
@@ -47,6 +52,10 @@ marias_users_homes = UserHome.create(:user_id => maria.id, :home_id => marias_ho
 
 tys_users_homes = UserHome.create(:user_id => ty.id, :home_id => tys_home.id,
  :exp => Chore.where(chore_completer_id: ty.id, home_id: tys_home.id).pluck(:chore_xp).sum, :admin => "true")
+
+eriks_users_homes = UserHome.create(:user_id => ty.id, :home_id => eriks_home.id,
+  :exp => Chore.where(chore_completer_id: ty.id, home_id: eriks_home.id).pluck(:chore_xp).sum, :admin => "true")
+
 
 #Bills
 5.times do Bill.create(:user => maria, :home_id => marias_home.id, :name => Faker::Lorem.word,
