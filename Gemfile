@@ -20,6 +20,8 @@ gem 'bootstrap_form'
 gem 'pg'
 gem 'httparty'
 gem 'faker', '~> 1.6', '>= 1.6.5'
+gem "omniauth-paypal"
+
 
 group :development do
   gem 'web-console'
