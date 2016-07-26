@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {sessions: 'sessions',
                             registrations: 'registrations'}
   resources :users, except: [:new, :edit]
-
+  resources :user_homes
   resources :homes, except: [:new, :edit] do
       get "completed_chores", to: "chores#completed_chores"
       get "all_chores", to: "chores#all_chores" #gets all completed and incomplete chores
