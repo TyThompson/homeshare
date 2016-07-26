@@ -15,8 +15,28 @@ class User < ApplicationRecord
         has_many :lists, :through => :homes
         has_many :purchased_items, class_name: 'Item'
         has_many :created_items, class_name: 'Item'
-        
+
         acts_as_voter
+
+        has_many :auth_tokens, dependent: :destroy
+
+
+  def self.with_token unique_token
+    token = AuthToken.active.find_by unique_token: unique_token
+    token.user if token
+  end
+
+  def token_for name
+    auth_tokens.active.find_by name: name
+  end
+
+  def generate_token_for name
+    auth_tokens.create!(
+      name:         name,
+      unique_token: SecureRandom.uuid,
+      expires_at:   2.weeks.from_now
+    )
+  end
 
 
 end
