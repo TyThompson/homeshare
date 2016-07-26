@@ -39,6 +39,8 @@ class ListsController < ApplicationController
     @list.destroy
   end
 
+
+
 private
   def set_list
     begin
