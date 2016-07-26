@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
 
 
   def update
-    if @item.update(chore_params)
+    if @item.update(item_params)
       render :show
     else
       render :error
@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
     @item.purchased = true
     @item.purchased_at = Time.now
     if @item.save
-      render :show
+      render :action_successful, status: 200
     else
       render :error
     end
@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
 
 
   def item_params
-    params.require(:item).permit(:home_id, :list_id, :title, :item_xp)
+    params.require(:item).permit(:home_id, :title, :item_xp)
   end
 
 
