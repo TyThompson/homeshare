@@ -28,7 +28,7 @@ class ChoresController < ApplicationController
     @home = Home.find_by(creator_id: current_user.id)
     @chore.home_id = @home.id
     if @chore.save
-      render :show
+      render :show, status: 201
     else
       render :error
     end
@@ -37,7 +37,7 @@ class ChoresController < ApplicationController
 
   def update
     if @chore.update(chore_params)
-      render :show
+      render :show, status: 200
     else
       render :error
     end
@@ -49,7 +49,7 @@ class ChoresController < ApplicationController
     @chore.completed = true
     @chore.completed_at = Time.now
     if @chore.save
-      render :show
+      render :show, status: 200
     else
       render :error
     end

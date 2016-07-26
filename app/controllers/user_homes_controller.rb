@@ -30,7 +30,7 @@ before_action :set_user_home, except: [:create, :index]
 
   def set_user_home
     begin
-      @userhome = UserHome.where(home_id: params[:home_id], user_id: params[:id])
+      @userhome = UserHome.where(home_id: params[:home_id], user_id: current_user.id)
     rescue
       render 'not_found'
     end

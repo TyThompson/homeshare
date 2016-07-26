@@ -5,11 +5,10 @@ class BillsController < ApplicationController
 
   def create
     @bill = Bill.new(bill_params)
-    @bill.thumbs_up = 0
     if @bill.save
-      render :show
+      render :show, status: 201
     else
-      render @bill.errors
+      render :error
     end
   end
 
@@ -19,9 +18,9 @@ class BillsController < ApplicationController
 
   def update
     if @bill.update(bill_params)
-      render :show
+      render :show, status: 200
     else
-      render @bill.errors
+      render :error
     end
   end
 
