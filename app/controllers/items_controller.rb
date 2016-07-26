@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:create, :index]
+  before_action :set_item, except: [:create, :index, :purchase]
 
   def index
     @home = Home.find_by(params[:id])
