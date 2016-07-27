@@ -21,21 +21,22 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
       if @list.save
-        render :show
+        render :show, status: 201
       else
-        render @list.errors
+        render :error
       end
   end
 
   def update
     if @list.update(list_params)
-      render :show
+      render :show, status: 200
     else
-      render @list.errors
+      render :error
     end
   end
 
   def destroy
+    authorize @list
     @list.destroy
   end
 

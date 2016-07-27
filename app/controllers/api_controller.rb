@@ -5,7 +5,6 @@ class ApiController < ApplicationController
  before_action { request.format = :json }
 
  def register
-   # FIXME: need a way to log in an existing user (meaning what exactly?)
    @user = User.create!(
      email:    params[:email],
      password: params[:password]

@@ -15,14 +15,15 @@ before_action :set_user_home, except: [:create, :index]
   def create
     @userhome = UserHome.new(user_home_params)
     if @userhome.save
-      render :show
+      render :show, status: 201
     else
-      render @userhome.errors
+      render :error
     end
   end
 
 # user leaves a home
   def destroy
+    authorize @userhome
     @userhome.destroy
   end
 
@@ -30,7 +31,7 @@ before_action :set_user_home, except: [:create, :index]
 
   def set_user_home
     begin
-      @userhome = UserHome.where(home_id: params[:home_id], user_id: params[:id])
+      @userhome = UserHome.where(home_id: params[:home_id], user_id: current_user.id)
     rescue
       render 'not_found'
     end

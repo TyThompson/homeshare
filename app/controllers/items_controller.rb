@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.item_creator = current_user.id
     if @item.save
-      render :show
+      render :show, status: 201
     else
       render :error
     end
@@ -51,6 +51,7 @@ class ItemsController < ApplicationController
 
 
   def destroy
+    authorize @item
     @item.destroy
   end
 

@@ -15,6 +15,7 @@ class HomesController < ApplicationController
   end
 
   def destroy
+    authorize @home
     @home.destroy
     render :action_successful, status: 200
   end

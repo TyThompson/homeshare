@@ -21,7 +21,7 @@ gem 'pg'
 gem 'httparty'
 gem 'faker', '~> 1.6', '>= 1.6.5'
 gem "omniauth-paypal"
-
+gem 'pundit'
 
 group :development do
   gem 'web-console'
