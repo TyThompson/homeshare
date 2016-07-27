@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :edit] do
     member do
       post "make_payment", to: "payments#pay"
-      get "payments", to: "payments#received_payments"
+      get "received_payments", to: "payments#received_payments"
+      get "sent_payments", to: "payments#sent_payments"
     end
   end
 
