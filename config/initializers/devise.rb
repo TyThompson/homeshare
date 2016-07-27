@@ -254,7 +254,7 @@ Devise.setup do |config|
 
     def authenticate!
       email = request.env["HTTP_AUTHORIZATION"]
-      user  = User.find_by email: email
+      user  = AuthToken.find_by unique_token: unique_token
       if user
         success! user
       else
