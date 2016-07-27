@@ -20,20 +20,12 @@ class PaymentsController < ApplicationController
   def sent_payments
     @user = User.find_by(id: current_user.id)
     @payments = @user.payments.where(sender_paypal_email: current_user.paypal_email)
-      render :sent_payments, status: 200
-    else
-      render :error
-    end
   end
 
 
   def received_payments
     @user = User.find_by(id: current_user.id)
     @payments = @user.payments.where(recipient_paypal_email: current_user.paypal_email)
-      render :received_payments, status: 200
-    else
-      render :error
-    end
   end
 
 
