@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726152203) do
+ActiveRecord::Schema.define(version: 20160727204448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,19 @@ ActiveRecord::Schema.define(version: 20160726152203) do
     t.datetime "completed_at"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.float    "amount"
+    t.integer  "sender_id"
+    t.string   "sender_paypal_email"
+    t.integer  "recipient_id"
+    t.string   "recipient_paypal_email"
+    t.datetime "paid_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "user_homes", force: :cascade do |t|
     t.integer  "user_id",                    null: false
     t.integer  "home_id",                    null: false
@@ -112,6 +125,9 @@ ActiveRecord::Schema.define(version: 20160726152203) do
     t.string   "venmo_email"
     t.string   "google_token"
     t.json     "google_data"
+    t.string   "paypal_email"
+    t.string   "paypal_id"
+    t.string   "paypal_token"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

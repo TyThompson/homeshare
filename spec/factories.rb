@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :payment do
+    
+  end
   factory :item do
     title "MyString"
     description "MyString"
