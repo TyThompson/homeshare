@@ -63,6 +63,7 @@ class ChoresController < ApplicationController
 
 
   def destroy
+    authorize @chore
     @chore.destroy
   end
 

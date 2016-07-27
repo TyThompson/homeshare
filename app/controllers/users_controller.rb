@@ -18,6 +18,7 @@ before_action :set_homes, except: [:create, :index, :destroy]
   end
 
   def destroy
+    authorize @user
     @user.destroy
   end
 

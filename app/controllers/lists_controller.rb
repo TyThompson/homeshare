@@ -31,11 +31,12 @@ class ListsController < ApplicationController
     if @list.update(list_params)
       render :show, status: 200
     else
-      render :error 
+      render :error
     end
   end
 
   def destroy
+    authorize @list
     @list.destroy
   end
 

@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
-
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :set_format
   before_action :authenticate_user!
   def set_format
     request.format = :json
+  end
+
+  def user_not_authorized
+    render json: "User is not authorized"
   end
 
   def check_user
