@@ -23,6 +23,7 @@ before_action :set_user_home, except: [:create, :index]
 
 # user leaves a home
   def destroy
+    authorize @userhome
     @userhome.destroy
   end
 

@@ -13,6 +13,7 @@ class BillsController < ApplicationController
   end
 
   def destroy
+    authorize @bill
     @bill.destroy
   end
 
