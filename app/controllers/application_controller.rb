@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    render json: "User is not authorized"
+    render json: "Pundit Error: User is not authorized"
   end
 
   def check_user

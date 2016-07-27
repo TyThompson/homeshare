@@ -253,12 +253,12 @@ Devise.setup do |config|
     end
 
     def authenticate!
-      email = request.env["HTTP_AUTHORIZATION"]
-      user  = AuthToken.find_by unique_token: unique_token
+      token = request.env["HTTP_AUTHORIZATION"]
+      user = AuthToken.where(unique_token: token).first.user
       if user
         success! user
       else
-        fail! "No user matches that email"
+        fail! "Devise Error: No user matches that email"
       end
     end
   end

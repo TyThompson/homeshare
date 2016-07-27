@@ -33,14 +33,14 @@ class HomesController < ApplicationController
   end
 
   def show
-    @home = Home.find(params[:id].to_i)
+    @home = Home.find(params[:id])
   end
 
   private
 
   def set_home
     begin
-      @home = Home.find(params[:id].to_i)
+      @home = Home.find(params[:id])
     rescue
       render 'not_found'
     end
