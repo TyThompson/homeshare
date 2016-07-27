@@ -15,9 +15,9 @@ before_action :set_user_home, except: [:create, :index]
   def create
     @userhome = UserHome.new(user_home_params)
     if @userhome.save
-      render :show
+      render :show, status: 201
     else
-      render @userhome.errors
+      render :error
     end
   end
 
