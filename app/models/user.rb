@@ -2,8 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable#, :omniauthable
-        #  :omniauth_providers => [:google]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+         :omniauth_providers => [:google]
 
         validates :email, presence: true
         has_many :user_homes
@@ -19,6 +19,15 @@ class User < ApplicationRecord
         acts_as_voter
 
         has_many :auth_tokens, dependent: :destroy
+
+
+
+  def self.from_omniauth(auth)
+    uid = request.env['omniauth.auth'].uid
+    user = User.where(uid: uid).first_or_create
+    session[:user_id] = user.id
+    redirect_to :root
+  end
 
 
   def self.with_token unique_token
