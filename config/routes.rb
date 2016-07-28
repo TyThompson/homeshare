@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   post "/api/register" => "api#register"
   get  "/api/me" => "api#me"
-
+  get  "/users/me" => "users#me"
 
 # homes nest start
   resources :homes, except: [:new, :edit] do
