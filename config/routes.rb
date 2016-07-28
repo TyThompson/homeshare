@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 # homes nest start
   resources :homes, except: [:new, :edit] do
     get "completed_chores", to: "chores#completed_chores"
+    post "invite", to: "homes#invite"
     get "all_chores", to: "chores#all_chores" #gets all completed and incomplete chores
     resources :user_homes, except: [:new, :edit, :update]
 
