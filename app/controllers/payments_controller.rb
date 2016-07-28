@@ -23,7 +23,6 @@ class PaymentsController < ApplicationController
 
 
   def received_payments
-    # @user = User.find_by(id: current_user.id)
     @payments = Payment.where(recipient_paypal_email: current_user.paypal_email)
   end
 
