@@ -8,10 +8,11 @@ Item.delete_all
 
 
 #Users
-maria = User.create(:email => 'maria@example.com', :password => 'password', :site_admin => true)
-ty = User.create(:email => 'ty@example.com', :password => 'password')
+maria = User.create(:email => 'maria@example.com', :password => 'password', paypal_email: 'maria@payment.com',
+ :site_admin => true)
+ty = User.create(:email => 'ty@example.com', :password => 'password', paypal_email: 'ty@payment.com')
 
-20.times do User.create(:email => Faker::Internet.email,
+5.times do User.create(:email => Faker::Internet.email,
   :password => Faker::Internet.password)
 end
 
@@ -90,4 +91,16 @@ end
 
 2.times do Item.create(:home_id => tys_home.id, :list_id => tys_shopping_list.id, :title => Faker::Lorem.word,
   :description => Faker::Lorem.sentence, :item_xp => 100, :purchaser_id => maria.id, :purchased => true)
+end
+
+
+#Payments
+2.times do Payment.create(:title => Faker::Lorem.word, :description => Faker::Lorem.sentence, :amount => Faker::Commerce.price,
+  :sender_id => maria.id, :sender_paypal_email => maria.paypal_email, :recipient_id => ty.id,
+  :recipient_paypal_email => ty.paypal_email)
+end
+
+2.times do Payment.create(:title => Faker::Lorem.word, :description => Faker::Lorem.sentence, :amount => Faker::Commerce.price,
+  :sender_id => ty.id, :sender_paypal_email => ty.paypal_email, :recipient_id => maria.id,
+  :recipient_paypal_email => maria.paypal_email)
 end

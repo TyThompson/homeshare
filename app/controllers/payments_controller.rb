@@ -18,14 +18,13 @@ class PaymentsController < ApplicationController
 
 
   def sent_payments
-    @user = User.find_by(id: current_user.id)
-    @payments = @user.payments.where(sender_paypal_email: current_user.paypal_email)
+    @payments = Payment.where(sender_paypal_email: current_user.paypal_email)
   end
 
 
   def received_payments
-    @user = User.find_by(id: current_user.id)
-    @payments = @user.payments.where(recipient_paypal_email: current_user.paypal_email)
+    # @user = User.find_by(id: current_user.id)
+    @payments = Payment.where(recipient_paypal_email: current_user.paypal_email)
   end
 
 

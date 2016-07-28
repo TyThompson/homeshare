@@ -15,7 +15,8 @@ class User < ApplicationRecord
         has_many :lists, :through => :homes
         has_many :purchased_items, class_name: 'Item'
         has_many :created_items, class_name: 'Item'
-        has_many :payments 
+        has_many :sent_payments, class_name: 'Payment', foreign_key: "sender_id"
+        has_many :received_payments, class_name: 'Payment', foreign_key: "recipient_id"
 
         acts_as_voter
 
