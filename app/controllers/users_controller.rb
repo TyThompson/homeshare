@@ -22,11 +22,23 @@ before_action :set_homes, except: [:create, :index, :destroy]
     @user.destroy
   end
 
+  def update
+    if @user.update(user_params)
+      render :show, status: 201
+    else
+      render :error
+    end
+  end
+
+  def me
+    show
+  end
+
   private
 
   def set_user
     begin
-      @user = User.find(params[:id])
+      @user = User.find(current_user.id)
     rescue
       render 'not_found'
     end
@@ -34,18 +46,18 @@ before_action :set_homes, except: [:create, :index, :destroy]
 
   def set_homes
     begin
-      @homes = UserHome.where(user_id: params[:id])
+      @homes = UserHome.where(user_id: current_user.id)
     rescue
       render 'not_found'
     end
   end
 
   def home_method
-    @home_exp = Chore.joins(:home).where(chore_completer_id: params[:id]).pluck(:chore_xp).sum
+    @home_exp = Chore.joins(:home).where(chore_completer_id: params[current_user.id]).pluck(:chore_xp).sum
   end
 
   def user_method
-    @user_exp = Chore.where(chore_completer_id: params[:id]).pluck(:chore_xp).sum
+    @user_exp = Chore.where(chore_completer_id: params[current_user.id]).pluck(:chore_xp).sum
   end
 
   def calc_exp(input)
@@ -59,6 +71,11 @@ before_action :set_homes, except: [:create, :index, :destroy]
     if @percent == 100
       @percent = 0
     end
+  end
+  private
+
+  def user_params
+    params.require(:user).permit(:email, :avatar, :venmo_username, :created_at)
   end
 
 end
