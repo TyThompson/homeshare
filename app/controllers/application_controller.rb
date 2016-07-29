@@ -24,16 +24,5 @@ class ApplicationController < ActionController::Base
     :authentication => :plain,
     :enable_starttls_auto => true
   }
-  #
-  # def emailer
-  #   # contact = Watchlist.where("price < ?", @pet.price).where(species: @pet.species)
-  #     contact.each do |p|
-  #       UserNotifier.send_email(p.user).deliver
-  #     end
-  # end
-
-  def testemail
-    UserNotifier.send_invite_email.deliver
-  end
 
 end
