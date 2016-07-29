@@ -3,7 +3,6 @@ Rails.application.routes.draw do
                             registrations: 'registrations'}
   resources :users, except: [:new, :edit] do
     member do
-      post "make_payment", to: "payments#pay"
       get "received_payments", to: "payments#received_payments"
       get "sent_payments", to: "payments#sent_payments"
     end
@@ -32,6 +31,7 @@ Rails.application.routes.draw do
     end
     resources :bills, except: [:new, :edit] do
       post 'completed'
+      post "pay", to: "payments#pay"
     end
     resource :list, except: [:new, :edit] do
       get "purchased_items", to: "items#purchased_items"
