@@ -9,10 +9,10 @@ class ListsController < ApplicationController
   #   end
   # end
 
-  def index
-    @home = Home.find_by(id: params[:home_id])
-    @lists = @home.lists
-  end
+  # def index
+  #   @home = Home.find_by(id: params[:home_id])
+  #   @lists = @home.lists
+  # end
 
   def show
     @list
@@ -52,7 +52,7 @@ private
   end
 
   def list_params
-    params.require(:list).permit(:name, :user_id, :home_id)
+    params.require(:list).permit(:name, :home_id)
   end
 
 end

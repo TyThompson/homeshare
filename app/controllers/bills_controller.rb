@@ -5,6 +5,7 @@ class BillsController < ApplicationController
 
   def create
     @bill = Bill.new(bill_params)
+    @bill.user_id = current_user.id 
     if @bill.save
       render :show, status: 201
     else
@@ -34,10 +35,10 @@ class BillsController < ApplicationController
     @bill
   end
 
-  def pay_user
-    @venmo_user = User.where(email: current_user.email).pluck(:venmo_username)
-    @venmo_payee = User.where(email: params[:payee]).pluck(:venmo_username)
-  end
+  # def pay_user
+  #   @venmo_user = User.where(email: current_user.email).pluck(:venmo_username)
+  #   @venmo_payee = User.where(email: params[:payee]).pluck(:venmo_username)
+  # end
 
   private
 
