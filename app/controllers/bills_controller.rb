@@ -5,7 +5,7 @@ class BillsController < ApplicationController
 
   def create
     @bill = Bill.new(bill_params)
-    @bill.user_id = current_user.id 
+    @bill.user_id = current_user.id
     if @bill.save
       render :show, status: 201
     else
@@ -27,7 +27,7 @@ class BillsController < ApplicationController
   end
 
   def index
-    @home = Home.find_by(params[:id])
+    @home = Home.find params[:id].to_i
     @bills = @home.bills
   end
 
@@ -44,7 +44,7 @@ class BillsController < ApplicationController
 
   def set_bill
     begin
-      @bill = Bill.find_by(id: params[:id], home_id: params[:home_id])
+      @bill = Bill.find_by(id: params[:id].to_i, home_id: params[:home_id].to_i)
     rescue
       render 'not_found'
     end

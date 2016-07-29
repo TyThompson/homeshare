@@ -45,7 +45,7 @@ class ListsController < ApplicationController
 private
   def set_list
     begin
-      @list = List.find_by(home_id: params[:home_id])
+      @list = List.find_by(home_id: params[:home_id].to_i)
     rescue
       render 'not_found'
     end

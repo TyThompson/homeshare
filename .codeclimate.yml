@@ -38,9 +38,14 @@ ratings:
   - "**.module"
   - "**.php"
   - "**.py"
+checks:
+csrf_protection_missing:
+  enabled: false
 exclude_paths:
 - config/
 - db/
 - spec/
 - test/
 - vendor/
+- coverage/
+- assets/
