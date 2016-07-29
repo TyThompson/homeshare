@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:create, :index]
 
   def index
-    @home = Home.find_by(params[:id])
+    @home = Home.find_by(params[:id].to_i)
     @items = @home.list.items.where(purchased: false)
   end
 
