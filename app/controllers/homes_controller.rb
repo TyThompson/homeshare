@@ -36,6 +36,14 @@ class HomesController < ApplicationController
     @home = Home.find(params[:id])
   end
 
+
+  def join
+    @home = Home.find(params[:id])
+    @userhome = UserHome.create!(user: current_user, home: @home, created_at: Time.now)
+    render :show, status: 201
+  end
+
+
   private
 
   def set_home
