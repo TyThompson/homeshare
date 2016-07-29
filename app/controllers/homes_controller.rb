@@ -44,6 +44,7 @@ class HomesController < ApplicationController
   end
 
 
+
   private
 
   def set_home
