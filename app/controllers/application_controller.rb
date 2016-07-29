@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   # end
 
   def testemail
-    UserNotifier.send_invite_email(params[:friend_email).deliver
+    UserNotifier.send_invite_email.deliver
   end
 
 end
