@@ -36,14 +36,14 @@ class HomesController < ApplicationController
     @home = Home.find(params[:id])
   end
 
-  def invite
-    friend_objects = User.where(email: params[:friend_email])
-    friend_objects.each do |p|
-      UserNotifier.send_invite(p.friend_objects).deliver
-      userhome = UserHome.new(user_id: p.friend_objects.id, params[:home_id])
-      userhome.save
-    end
-  end
+  # def invite
+  #   friend_objects = User.where(email: params[:friend_email])
+  #   friend_objects.each do |p|
+  #     UserNotifier.send_invite(p.friend_objects).deliver
+  #     userhome = UserHome.new(user_id: p.friend_objects.id, params[:home_id])
+  #     userhome.save
+  #   end
+  # end
 
   private
 
