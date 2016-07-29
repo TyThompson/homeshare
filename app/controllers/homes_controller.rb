@@ -36,6 +36,8 @@ class HomesController < ApplicationController
     @home = Home.find(params[:id])
   end
 
+
+
   private
 
   def set_home
