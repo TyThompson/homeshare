@@ -6,7 +6,7 @@ class HomesController < ApplicationController
     @home = Home.new(home_params)
     @home.creator_id = current_user.id
     if @home.save
-      UserHome.create!(user: current_user,
+      UserHome.create(user: current_user,
         home: @home)
       render :show, status: 201
     else
@@ -33,14 +33,14 @@ class HomesController < ApplicationController
   end
 
   def show
-    @home = Home.find(params[:id])
+    @home = Home.find(params[:id].to_i)
   end
 
   private
 
   def set_home
     begin
-      @home = Home.find(params[:id])
+      @home = Home.find(params[:id].to_i)
     rescue
       render 'not_found'
     end
