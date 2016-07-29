@@ -27,7 +27,7 @@ class BillsController < ApplicationController
   end
 
   def index
-    @home = Home.find_by(params[:id].to_i)
+    @home = Home.find params[:id].to_i
     @bills = @home.bills
   end
 
