@@ -35,7 +35,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
-  gem 'faker', '~> 1.6', '>= 1.6.5'
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'spring-commands-rspec'
