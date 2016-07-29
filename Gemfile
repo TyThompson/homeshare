@@ -21,6 +21,7 @@ gem 'pg'
 gem 'httparty'
 gem 'faker', '~> 1.6', '>= 1.6.5'
 gem 'pundit'
+gem 'rollbar'
 
 group :development do
   gem 'web-console'
