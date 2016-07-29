@@ -6,12 +6,14 @@ class ChoresController < ApplicationController
 
 
   def index
-    @chores = Chore.where(completed: false).all
+    @home = Home.find_by(params[:id].to_i)
+    @chores = @home.chores.where(completed: false).all
   end
 
 
   def all_chores
-    @chores = Chore.all
+    @home = Home.find_by(params[:id].to_i)
+    @chores = @home.chores.all
   end
 
 

@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
 
 
   def purchased_items
-    @home = Home.find_by(params[:id])
+    @home = Home.find_by(params[:id].to_i)
     @items = @home.list.items.where(purchased: true)
   end
 
