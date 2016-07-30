@@ -2,6 +2,9 @@
 engines:
   brakeman:
     enabled: true
+    checks:
+    csrf_protection_missing:
+    enabled: false
   bundler-audit:
     enabled: true
   csslint:
@@ -38,9 +41,6 @@ ratings:
   - "**.module"
   - "**.php"
   - "**.py"
-checks:
-csrf_protection_missing:
-  enabled: false
 exclude_paths:
 - config/
 - db/

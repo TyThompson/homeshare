@@ -6,13 +6,17 @@ class ChoresController < ApplicationController
 
 
   def index
-    @home = Home.find_by(params[:id])#.to_i
+    @home = Home.find params[:home_id].to_i
     @chores = @home.chores.where(completed: false)
   end
 
 
   def all_chores
+<<<<<<< HEAD
     @home = Home.find_by(params[:id])#.to_i
+=======
+    @home = Home.find params[:home_id].to_i
+>>>>>>> 78a6ee5517989384e28bd7af90ddd0e06ee506ab
     @chores = @home.chores.all
   end
 
@@ -25,7 +29,7 @@ class ChoresController < ApplicationController
   def create
     @chore = Chore.new(chore_params)
     @chore.chore_creator_id = current_user.id
-    @home = Home.find_by(params[:id])#.to_i
+    @home = Home.find params[:home_id].to_i
     @chore.home_id = @home.id
     if @chore.save
       render :show, status: 201
@@ -57,7 +61,7 @@ class ChoresController < ApplicationController
 
 
   def completed_chores
-    @home = Home.find(params[:id])#.to_i
+    @home = Home.find params[:home_id].to_i
     @chores = @home.chores.where(completed: true).all
   end
 
