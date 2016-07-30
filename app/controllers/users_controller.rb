@@ -3,8 +3,8 @@ before_action :set_user, except: [:create, :index]
 before_action :set_homes, except: [:create, :index, :destroy]
 
   def show
-    user_method
-    @user_level = calc_exp(@user_exp)
+    total_exp
+    @user_level = calc_exp(@total_exp)
     @user_percent = @percent
     @user_level = @level
     home_method
@@ -56,8 +56,16 @@ before_action :set_homes, except: [:create, :index, :destroy]
     @home_exp = Chore.joins(:home).where(chore_completer_id: current_user.id, completed: true).pluck(:chore_xp).sum
   end
 
-  def user_method
-    @user_exp = Chore.where(chore_completer_id: current_user.id, completed: true).pluck(:chore_xp).sum
+  def chore_xp
+    @user_chore_exp = Chore.where(chore_completer_id: current_user.id, completed: true).pluck(:chore_xp).sum
+  end
+
+  def item_xp
+    @user_item_exp = Item.where(purchaser_id: current_user.id, purchased: true).pluck(:item_xp).sum
+  end
+
+  def total_xp
+    @total_xp = @user_chore_exp + @user_item_exp
   end
 
   def calc_exp(input)
@@ -74,7 +82,7 @@ before_action :set_homes, except: [:create, :index, :destroy]
   end
 
   def user_params
-    params.require(:user).permit(:email, :avatar, :venmo_username, :created_at)
+    params.require(:user).permit(:email, :avatar, :venmo_username, :created_at, :paypal_email)
   end
 
 end

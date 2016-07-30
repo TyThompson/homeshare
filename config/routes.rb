@@ -24,7 +24,6 @@ Rails.application.routes.draw do
     get "chores", to: "chores#index" #gets chores that are incomplete
     resources :user_homes, except: [:new, :edit, :update]
     post "chores", to: "chores#create"
-    get "housemates", to: "homes#housemates"
 
 
     resources :chores, except: [:new, :edit] do
@@ -41,7 +40,6 @@ Rails.application.routes.draw do
     end
     resource :list, except: [:new, :edit] do
       get "purchased_items", to: "items#purchased_items"
-      # post 'completed'
       resources :items, except: [:new, :edit] do
         member do
           post "purchase"
