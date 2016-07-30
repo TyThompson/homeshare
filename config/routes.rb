@@ -18,12 +18,14 @@ Rails.application.routes.draw do
   resources :homes, except: [:new, :edit] do
     get "completed_chores", to: "chores#completed_chores"
     post "invite", to: "homes#invite"
-    post "join", to: "homes#join"
+    # post "join", to: "homes#join"
     get "test" => "home#test"
     get "all_chores", to: "chores#all_chores" #gets all completed and incomplete chores
     get "chores", to: "chores#index" #gets chores that are incomplete
     resources :user_homes, except: [:new, :edit, :update]
     post "chores", to: "chores#create"
+    get "housemates", to: "homes#housemates"
+
 
     resources :chores, except: [:new, :edit] do
       member do

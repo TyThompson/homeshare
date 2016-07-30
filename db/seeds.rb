@@ -11,6 +11,8 @@ Item.delete_all
 maria = User.create(:email => 'maria@example.com', :password => 'password', paypal_email: 'maria@payment.com',
  :site_admin => true)
 ty = User.create(:email => 'ty@example.com', :password => 'password', paypal_email: 'ty@payment.com')
+erik = User.create(:email => 'erik@example.com', :password => 'password', paypal_email: 'erik@payment.com')
+
 
 5.times do User.create(:email => Faker::Internet.email,
   :password => Faker::Internet.password)
@@ -22,7 +24,7 @@ marias_home = Home.create(:name => "Maria's house", :creator_id => maria.id)
 
 tys_home = Home.create(:name => "Ty's house", :creator_id => ty.id)
 
-eriks_home = Home.create(:name => "Erik's house", :creator_id => ty.id)
+eriks_home = Home.create(:name => "Erik's house", :creator_id => erik.id)
 
 
 #Chores
@@ -48,14 +50,14 @@ end
 end
 
 #Users_Homes
-marias_users_homes = UserHome.create(:user_id => maria.id, :home_id => marias_home.id,
+marias_userhomes = UserHome.create(:user_id => maria.id, :home_id => marias_home.id,
  :exp => Chore.where(chore_completer_id: maria.id, home_id: marias_home.id).pluck(:chore_xp).sum, :admin => "true")
 
-tys_users_homes = UserHome.create(:user_id => ty.id, :home_id => tys_home.id,
+tys_userhomes = UserHome.create(:user_id => ty.id, :home_id => tys_home.id,
  :exp => Chore.where(chore_completer_id: ty.id, home_id: tys_home.id).pluck(:chore_xp).sum, :admin => "true")
 
-eriks_users_homes = UserHome.create(:user_id => ty.id, :home_id => eriks_home.id,
-  :exp => Chore.where(chore_completer_id: ty.id, home_id: eriks_home.id).pluck(:chore_xp).sum, :admin => "true")
+eriks_userhomes = UserHome.create(:user_id => erik.id, :home_id => eriks_home.id,
+  :exp => Chore.where(chore_completer_id: erik.id, home_id: eriks_home.id).pluck(:chore_xp).sum, :admin => "true")
 
 
 #Bills

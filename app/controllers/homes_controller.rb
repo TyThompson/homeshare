@@ -14,11 +14,13 @@ class HomesController < ApplicationController
     end
   end
 
+
   def destroy
     authorize @home
     @home.destroy
     render :action_successful, status: 200
   end
+
 
   def update
     if @home.update(home_params)
@@ -28,19 +30,14 @@ class HomesController < ApplicationController
     end
   end
 
+
   def index
     @homes = Home.all
   end
 
+
   def show
     @home = Home.find params[:id].to_i
-  end
-
-
-  def join
-    @home = Home.find params[:id].to_i
-    @userhome = UserHome.create(user: current_user, home: @home, created_at: Time.now)
-    render :show, status: 201
   end
 
 
