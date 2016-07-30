@@ -38,8 +38,8 @@ class HomesController < ApplicationController
 
 
   def join
-    @home = Home.find(params[:id])
-    @userhome = UserHome.create!(user: current_user, home: @home, created_at: Time.now)
+    @home = Home.find params[:id].to_i
+    @userhome = UserHome.create(user: current_user, home: @home, created_at: Time.now)
     render :show, status: 201
   end
 

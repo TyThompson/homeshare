@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :tokens, only: [:index, :destroy]
 
   post "/api/register" => "api#register"
+  get "/api/invitethem" => "api#invitethem"
   get  "/users/me" => "users#me"
 
 # homes nest start
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
     post "join", to: "homes#join"
     get "test" => "home#test"
     get "all_chores", to: "chores#all_chores" #gets all completed and incomplete chores
-    get "chores", to: "chores#index" #gets chores that are incomplete 
+    get "chores", to: "chores#index" #gets chores that are incomplete
     resources :user_homes, except: [:new, :edit, :update]
 
     resources :chores, except: [:new, :edit] do
