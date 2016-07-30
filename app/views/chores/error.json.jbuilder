@@ -1,1 +1,1 @@
-json.error "Could not save answer"
+json.error "Could not save chore"
