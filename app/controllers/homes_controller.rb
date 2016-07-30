@@ -6,8 +6,8 @@ class HomesController < ApplicationController
     @home = Home.new(home_params)
     @home.creator_id = current_user.id
     if @home.save
-      UserHome.create(user: current_user,
-        home: @home)
+      UserHome.create(user_id: current_user.id,
+        home_id: @home.id)
       render :show, status: 201
     else
       render :error
