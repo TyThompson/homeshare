@@ -7,7 +7,7 @@ class ChoresController < ApplicationController
 
   def index
     @home = Home.find params[:id].to_i
-    @chores = @home.chores.where(completed: false).all
+    @chores = @home.chores.where(completed: false)
   end
 
 
