@@ -12,11 +12,7 @@ class ChoresController < ApplicationController
 
 
   def all_chores
-<<<<<<< HEAD
-    @home = Home.find_by(params[:id])#.to_i
-=======
     @home = Home.find params[:home_id].to_i
->>>>>>> 78a6ee5517989384e28bd7af90ddd0e06ee506ab
     @chores = @home.chores.all
   end
 
