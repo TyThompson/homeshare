@@ -16,14 +16,15 @@ Rails.application.routes.draw do
 
 # homes nest start
   resources :homes, except: [:new, :edit] do
-    get "completed_chores", to: "chores#completed_chores"
     post "invite", to: "homes#invite"
     # post "join", to: "homes#join"
+    resources :user_homes, except: [:new, :edit, :update]
     get "test" => "home#test"
+
     get "all_chores", to: "chores#all_chores" #gets all completed and incomplete chores
     get "chores", to: "chores#index" #gets chores that are incomplete
-    resources :user_homes, except: [:new, :edit, :update]
     post "chores", to: "chores#create"
+    get "completed_chores", to: "chores#completed_chores"
 
 
     resources :chores, except: [:new, :edit] do
@@ -34,10 +35,13 @@ Rails.application.routes.draw do
         post "mark_complete"
       end
     end
+
+    get '/bills/paid', to: "bills#paid"
     resources :bills, except: [:new, :edit] do
-      post 'completed'
       post "pay", to: "payments#pay"
+      post "mark_paid", to: "bills#mark_paid"
     end
+
     resource :list, except: [:new, :edit] do
       get "purchased_items", to: "items#purchased_items"
       resources :items, except: [:new, :edit] do
@@ -46,6 +50,7 @@ Rails.application.routes.draw do
         end
       end
     end
+
   end
 #homes nest ends
 end

@@ -35,6 +35,17 @@ class BillsController < ApplicationController
     @bill
   end
 
+  def paid #GET request to view house bills that have been marked as "paid"
+    @home = Home.find params[:home_id].to_i
+    @bills = @home.bills.where(paid: true).all
+  end
+
+  def mark_paid #POST request to here simply marks bill as "paid", assigns current_user as payer, & timestamps payment
+    @bill.paid_by = current_user.id
+    @bill.paid = true
+    @chore.paid_at = Time.now
+  end
+
   # def pay_user
   #   @venmo_user = User.where(email: current_user.email).pluck(:venmo_username)
   #   @venmo_payee = User.where(email: params[:payee]).pluck(:venmo_username)
