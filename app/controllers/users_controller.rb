@@ -53,11 +53,11 @@ before_action :set_homes, except: [:create, :index, :destroy]
   end
 
   def home_method
-    @home_exp = Chore.joins(:home).where(chore_completer_id: params[current_user.id]).pluck(:chore_xp).sum
+    @home_exp = Chore.joins(:home).where(chore_completer_id: params[current_user.id], completed: true).pluck(:chore_xp).sum
   end
 
   def user_method
-    @user_exp = Chore.where(chore_completer_id: params[current_user.id]).pluck(:chore_xp).sum
+    @user_exp = Chore.where(chore_completer_id: params[current_user.id], completed: true).pluck(:chore_xp).sum
   end
 
   def calc_exp(input)

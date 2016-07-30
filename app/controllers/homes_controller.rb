@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
   before_action :set_home, except: [:create, :index, :show]
   # before_action :check_user, only: [:update, :destroy]
-
+  # this controller is using params id as the home_id ex: /homes/:id(.:format)
   def create
     @home = Home.new(home_params)
     @home.creator_id = current_user.id
