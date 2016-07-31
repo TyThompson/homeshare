@@ -108,8 +108,7 @@ class ChoresController < ApplicationController
   end
 
   def chore_params
-    params.require(:chore).permit(:home_id, :name, :description, :bill_value,
-    :chore_xp, :votes)
+    params.require(:chore).permit(:home_id, :name, :description, :chore_xp, :votes)
   end
 
 end
