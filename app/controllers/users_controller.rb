@@ -40,7 +40,7 @@ before_action :set_homes, except: [:create, :index, :destroy]
     begin
       @user = current_user
     rescue
-      render 'not_found'
+      render :not_found
     end
   end
 
@@ -48,7 +48,7 @@ before_action :set_homes, except: [:create, :index, :destroy]
     begin
       @homes = UserHome.where(user_id: current_user.id)
     rescue
-      render 'not_found'
+      render :not_found
     end
   end
 

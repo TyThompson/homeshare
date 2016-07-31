@@ -6,7 +6,7 @@ before_action :set_user_home, except: [:create, :index]
     @userhome
   end
 
-# show list of each user in that home along with their xp and level for that home 
+# show list of each user in that home along with their xp and level for that home
   def index
     @userhomes = UserHome.where(home_id: params[:home_id])
   end
@@ -33,7 +33,7 @@ before_action :set_user_home, except: [:create, :index]
     begin
       @userhome = UserHome.where(home_id: params[:home_id], user_id: current_user.id)
     rescue
-      render 'not_found'
+      render :not_found
     end
   end
 

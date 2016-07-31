@@ -103,7 +103,7 @@ class ChoresController < ApplicationController
     begin
       @chore = Chore.find_by(id: params[:id], home_id: params[:home_id])
     rescue
-      render 'not_found'
+      render :not_found
     end
   end
 

@@ -57,7 +57,7 @@ class BillsController < ApplicationController
     begin
       @bill = Bill.find_by(id: params[:id].to_i, home_id: params[:home_id].to_i)
     rescue
-      render 'not_found'
+      render :not_found
     end
   end
 

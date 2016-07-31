@@ -65,7 +65,7 @@ class ItemsController < ApplicationController
     begin
       @item = Item.find_by(id: params[:id], home_id: params[:home_id])
     rescue
-      render 'not_found'
+      render :not_found
     end
   end
 
@@ -73,7 +73,7 @@ class ItemsController < ApplicationController
     begin
       @home = Home.find params[:home_id].to_i
     rescue
-      render 'not_found'
+      render :not_found
     end
   end
 

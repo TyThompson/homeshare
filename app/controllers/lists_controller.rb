@@ -47,7 +47,7 @@ private
     begin
       @list = List.find_by(home_id: params[:home_id].to_i)
     rescue
-      render 'not_found'
+      render :not_found
     end
   end
 
