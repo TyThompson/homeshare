@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:create, :index]
 
   def index
-    @home = Home.find params[:id].to_i
+    set_home
     @items = @home.list.items.where(purchased: false)
   end
 
@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
 
 
   def purchased_items
-    @home = Home.find params[:id].to_i
+    set_home
     @items = @home.list.items.where(purchased: true)
   end
 
@@ -69,6 +69,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def set_home
+    begin
+      @home = Home.find params[:home_id].to_i
+    rescue
+      render 'not_found'
+    end
+  end
 
   def item_params
     params.require(:item).permit(:home_id, :title, :description, :item_xp)
