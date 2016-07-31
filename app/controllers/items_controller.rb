@@ -13,7 +13,9 @@ class ItemsController < ApplicationController
 
 
   def create
+    set_home
     @item = Item.new(item_params)
+    @item.home_id = @home.id
     @item.item_creator = current_user.id
     if @item.save
       render :show, status: 201

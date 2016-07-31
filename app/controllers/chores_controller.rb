@@ -6,13 +6,13 @@ class ChoresController < ApplicationController
 
 
   def index
-    @home = Home.find params[:home_id].to_i
+    set_home
     @chores = @home.chores.where(completed: false)
   end
 
 
   def all_chores
-    @home = Home.find params[:home_id].to_i
+    set_home
     @chores = @home.chores.all
   end
 
@@ -25,7 +25,7 @@ class ChoresController < ApplicationController
   def create
     @chore = Chore.new(chore_params)
     @chore.chore_creator_id = current_user.id
-    @home = Home.find params[:home_id].to_i
+    set_home
     @chore.home_id = @home.id
     if @chore.save
       render :show, status: 201
@@ -57,7 +57,7 @@ class ChoresController < ApplicationController
 
 
   def completed_chores
-    @home = Home.find params[:home_id].to_i
+    set_home
     @chores = @home.chores.where(completed: true).all
   end
 
@@ -104,6 +104,14 @@ class ChoresController < ApplicationController
       @chore = Chore.find_by(id: params[:id], home_id: params[:home_id])
     rescue
       render :not_found
+    end
+  end
+
+  def set_home
+    begin
+      @home = Home.find params[:home_id].to_i
+    rescue
+      render 'not_found'
     end
   end
 
