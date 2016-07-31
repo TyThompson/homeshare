@@ -5,6 +5,6 @@ class UserNotifier < ActionMailer::Base
     @friend_email = friend_email
     @home_name = home_name
     mail( :to => @friend_email,
-          :subject => 'Invited to home:' @home_name )
+          :subject => 'Invited to home:' + @home_name )
   end
 end
