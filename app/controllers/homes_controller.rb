@@ -47,7 +47,6 @@ class HomesController < ApplicationController
       UserHome.create(user_id: @friend_object.id, home_id: @home.id)
       render :friend_joined_home, status: 200
     else
-      UserNotifier.send_invite_email(@friend,@home.name).deliver
       render :sent_friend_invite, status: 200
     end
 
@@ -82,6 +81,9 @@ class HomesController < ApplicationController
       if User.exists?(email: @friend)
         @friend_object = User.find_by(email: @friend)
         return true
+      else
+        UserNotifier.send_invite_email(@friend,@home.name).deliver
+        return false
       end
     rescue
       render 'not_found'
