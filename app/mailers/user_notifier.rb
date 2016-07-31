@@ -2,8 +2,7 @@ class UserNotifier < ActionMailer::Base
   default :from => 'admin@tiy-homeshare.herokuapp.com'
 
   def send_invite_email
-    friend_email = 'tythompson@gmail.com'
-    mail( :to => friend_email,
+    mail( :to => 'tythompson@gmail.com',
           :subject => 'Invited to a new home!' )
   end
 end
