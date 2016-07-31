@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-  before_action :set_home, except: [:create, :index, :show]
+  before_action :set_home, except: [:create, :index]
   # before_action :check_user, only: [:update, :destroy]
   # this controller is using params id as the home_id ex: /homes/:id(.:format)
   def create
@@ -13,7 +13,6 @@ class HomesController < ApplicationController
       render :error
     end
   end
-
 
   def destroy
     authorize @home
@@ -35,9 +34,7 @@ class HomesController < ApplicationController
     @homes = Home.all
   end
 
-
   def show
-    @home = Home.find params[:id].to_i
   end
 
   def invite
@@ -49,10 +46,7 @@ class HomesController < ApplicationController
     else
       render :sent_friend_invite, status: 200
     end
-
   end
-
-
 
   private
 
