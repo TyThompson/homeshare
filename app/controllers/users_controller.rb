@@ -3,7 +3,7 @@ before_action :set_user, except: [:create, :index]
 before_action :set_homes, except: [:create, :index, :destroy]
 
   def show
-    total_exp
+    calc_total
     @user_level = calc_exp(@total_exp)
     @user_percent = @percent
     @user_level = @level
@@ -64,18 +64,21 @@ before_action :set_homes, except: [:create, :index, :destroy]
     @user_item_exp = Item.where(purchaser_id: current_user.id, purchased: true).pluck(:item_xp).sum
   end
 
-  def total_xp
+  def calc_total
+    chore_xp
+    item_xp
     @total_xp = @user_chore_exp + @user_item_exp
+    @user_exp = @total_xp
   end
 
   def calc_exp(input)
     exp = 200.0
     @level = 1
-    until exp >= input
+    until exp >= input.to_f
       @level += 1
       exp = exp * 2.0
     end
-    @percent = (input/exp)*100
+    @percent = (input.to_f/exp)*100
     if @percent == 100
       @percent = 0
     end
