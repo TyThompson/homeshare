@@ -40,6 +40,19 @@ class HomesController < ApplicationController
     @home = Home.find params[:id].to_i
   end
 
+  def invite
+    @user = current_user
+    @friend = params[:friend_email]
+    if user_in_home? && friend_exists?
+      UserHome.create(user_id: @friend_object.id, home_id: @home.id)
+      render :friend_joined_home, status: 200
+    else
+      UserNotifier.send_invite_email(@friend,@home.name).deliver
+      render :sent_friend_invite, status: 200
+    end
+
+  end
+
 
 
   private
@@ -55,4 +68,24 @@ class HomesController < ApplicationController
   def home_params
     params.require(:home).permit(:name, :rent, :city, :created_at)
   end
+
+  def user_in_home?
+    begin
+      UserHome.exists?(user_id: current_user.id, home_id: @home.id)
+    rescue
+      render 'not_found'
+    end
+  end
+
+  def friend_exists?
+    begin
+      if User.exists?(email: @friend)
+        @friend_object = User.find_by(email: @friend)
+        return true
+      end
+    rescue
+      render 'not_found'
+    end
+  end
+
 end
