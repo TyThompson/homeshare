@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
 # homes nest start
   resources :homes, except: [:new, :edit] do
-    post "invite", to: "homes#invite"
+    post "invite/:friend_email", to: "homes#invite"
     # post "join", to: "homes#join"
     resources :user_homes, except: [:new, :edit, :update]
     get "test" => "home#test"
