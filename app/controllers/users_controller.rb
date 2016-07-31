@@ -38,7 +38,7 @@ before_action :set_homes, except: [:create, :index, :destroy]
 
   def set_user
     begin
-      @user = User.find(current_user.id)
+      @user = current_user
     rescue
       render 'not_found'
     end
