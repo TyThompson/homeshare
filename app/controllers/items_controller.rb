@@ -17,6 +17,9 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.home_id = @home.id
     @item.item_creator = current_user.id
+    # temporary list_id fix
+    @list = List.find_by(home_id: @home.id)
+    @item.list_id = @list.id
     if @item.save
       render :show, status: 201
     else
