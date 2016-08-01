@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :tokens, only: [:index, :destroy]
 
   post "/api/register" => "api#register"
-  get "/api/invitethem" => "api#invitethem"
   get  "/users/me" => "users#me"
 
 # homes nest start

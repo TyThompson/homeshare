@@ -4,10 +4,11 @@ class HomesController < ApplicationController
   # this controller is using params id as the home_id ex: /homes/:id(.:format)
   def create
     @home = Home.new(home_params)
+
     @home.creator_id = current_user.id
     if @home.save
-      UserHome.create(user_id: current_user.id,
-        home_id: @home.id)
+      UserHome.create(user_id: current_user.id, home_id: @home.id)
+      List.create(name: @home.name, user_id: current_user.id, home_id: @home.id)
       render :show, status: 201
     else
       render :error
