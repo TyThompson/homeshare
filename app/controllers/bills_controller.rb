@@ -6,10 +6,10 @@ class BillsController < ApplicationController
   def create
     @bill = Bill.new(bill_params)
     @bill.user_id = current_user.id
+    @bill.user_avatar = current_user.avatar
     @home = Home.find params[:home_id].to_i
     @bill.home_id = @home.id
     @bill.created_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
-    @bill.user_avatar = current_user.avatar 
     if @bill.save
       render :show, status: 201
     else
@@ -66,6 +66,6 @@ class BillsController < ApplicationController
   end
 
   def bill_params
-    params.require(:bill).permit(:user_id, :home_id, :name, :amount, :due, :completed_at)
+    params.require(:bill).permit(:user_id, :home_id, :name, :amount, :due, :completed_at, :user_avatar)
   end
 end
