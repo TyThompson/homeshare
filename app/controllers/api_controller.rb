@@ -13,12 +13,4 @@ class ApiController < ApplicationController
     render :successfully_registered, status: 200
   end
 
-  def invitethem
-    UserNotifier.send_invite_email.deliver
-    render json: {
-      success: "email processing",
-      status: 200
-      }, status: 200
-  end
-
 end
