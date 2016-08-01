@@ -7,7 +7,8 @@ class BillsController < ApplicationController
     @bill = Bill.new(bill_params)
     @bill.user_id = current_user.id
     @home = Home.find params[:home_id].to_i
-    @bill.home_id = @home.id 
+    @bill.home_id = @home.id
+    @bill.created_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
     if @bill.save
       render :show, status: 201
     else
