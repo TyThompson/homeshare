@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730205629) do
+ActiveRecord::Schema.define(version: 20160801205211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,14 +29,15 @@ ActiveRecord::Schema.define(version: 20160730205629) do
 
   create_table "bills", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "home_id",                    null: false
-    t.string   "name",                       null: false
-    t.float    "amount",                     null: false
+    t.integer  "home_id",                     null: false
+    t.string   "name",                        null: false
+    t.float    "amount",                      null: false
     t.datetime "due"
-    t.datetime "created_at",                 null: false
+    t.datetime "created_at",                  null: false
     t.integer  "paid_by"
     t.datetime "paid_at"
-    t.boolean  "paid",       default: false
+    t.boolean  "paid",        default: false
+    t.string   "user_avatar"
   end
 
   create_table "chores", force: :cascade do |t|
