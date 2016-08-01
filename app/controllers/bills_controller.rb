@@ -6,6 +6,8 @@ class BillsController < ApplicationController
   def create
     @bill = Bill.new(bill_params)
     @bill.user_id = current_user.id
+    @home = Home.find params[:home_id].to_i
+    @bill.home_id = @home.id 
     if @bill.save
       render :show, status: 201
     else
