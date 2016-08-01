@@ -47,7 +47,7 @@ class ChoresController < ApplicationController
   def mark_complete
     @chore.chore_completer_id = current_user.id
     @chore.completed = true
-    @chore.completed_at = Time.now
+    @chore.completed_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
     if @chore.save
       render :show, status: 200
     else
@@ -69,33 +69,6 @@ class ChoresController < ApplicationController
 
 
 
-  def upvote
-    @chore.upvote_by current_user
-    respond_to do |format|
-      format.html {redirect_to :back}
-      format.json {render json: {status: :ok, count: @chore.score}}
-    end
-  end
-
-
-  def downvote
-    @chore.downvote_by current_user
-    respond_to do |format|
-      format.html {redirect_to :back}
-      format.json {render json: {status: :ok, count: @chore.score}}
-    end
-  end
-
-
-  def votecount
-    respond_to do |format|
-      format.html {redirect_to :back}
-      format.json {render json: {status: :ok, chore_votes: @chore.score}}
-    end
-  end
-
-
-
 
   private
 
@@ -111,7 +84,7 @@ class ChoresController < ApplicationController
     begin
       @home = Home.find params[:home_id].to_i
     rescue
-      render 'not_found'
+      render :not_found
     end
   end
 

@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
   def purchase
     @item.purchaser_id = current_user.id
     @item.purchased = true
-    @item.purchased_at = Time.now
+    @item.purchased_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
     if @item.save
       render :action_successful, status: 200
     else

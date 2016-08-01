@@ -43,7 +43,7 @@ class BillsController < ApplicationController
   def mark_paid #POST request to here simply marks bill as "paid", assigns current_user as payer, & timestamps payment
     @bill.paid_by = current_user.id
     @bill.paid = true
-    @chore.paid_at = Time.now
+    @chore.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
   end
 
   # def pay_user

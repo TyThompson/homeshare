@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
   #     render :error
   #   end
   # end
-  
+
 
   def pay
     @payment = Payment.new(payment_params)
@@ -24,7 +24,7 @@ class PaymentsController < ApplicationController
     @payment.sender_paypal_email = current_user.paypal_email
     @payment.sender_id = current_user.id
     @payment.recipient_id = @recipient.id
-    @payment.paid_at = Time.now
+    @payment.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
     # @amount = Payment.find_by(sender_paypal_email: current_user.email).amount
     @amount = @payment.amount
     request = HTTParty.post("https://svcs.sandbox.paypal.com/AdaptivePayments/Pay",
