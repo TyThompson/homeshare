@@ -1,3 +1,4 @@
+AuthToken.delete_all
 User.delete_all
 Home.delete_all
 Chore.delete_all
