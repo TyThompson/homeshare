@@ -44,11 +44,49 @@ class BillsController < ApplicationController
     @bills = @home.bills.where(paid: true).all
   end
 
-  def mark_paid #POST request to here simply marks bill as "paid", assigns current_user as payer, & timestamps payment
+  # def mark_paid #POST request to here simply marks bill as "paid", assigns current_user as payer, & timestamps payment
+  #   @bill.paid_by = current_user.id
+  #   @bill.paid = true
+  #   @bill.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
+  # end
+
+
+
+  def pay
+    @payment = Payment.new(description: @bill.name, amount: @bill.amount, recipient_paypal_email: @bill.user.paypal_email)
+    @recipient_email = @payment.recipient_paypal_email
+    @payment.sender_paypal_email = current_user.paypal_email
+    @payment.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
+    @amount = @payment.amount
+    request = HTTParty.post("https://svcs.sandbox.paypal.com/AdaptivePayments/Pay",
+      headers: {"X-PAYPAL-SECURITY-USERID": "maria.cassino-facilitator_api1.gmail.com",
+                "X-PAYPAL-SECURITY-PASSWORD": "U9FL2MK962DKPXMR",
+                "X-PAYPAL-SECURITY-SIGNATURE": "AFcWxV21C7fd0v3bYYYRCpSSRl31A2tjSJXfuAz3het2TLAiz2uCt1eN",
+                "X-PAYPAL-REQUEST-DATA-FORMAT": "JSON",
+                "X-PAYPAL-RESPONSE-DATA-FORMAT": "JSON",
+                "X-PAYPAL-APPLICATION-ID": "APP-80W284485P519543T"
+                },
+      body:   {actionType: "PAY",
+               currencyCode: "USD",
+               receiverList: {
+                  receiver:[
+                             {amount: @amount,
+                              email: @recipient_email}
+                            ]
+                      },
+               returnUrl: "http://www.example.com/success.html",
+               cancelUrl: "http://www.example.com/failure.html",
+               requestEnvelope:{
+               errorLanguage: "en_US",
+               detailLevel: "ReturnAll"
+                }}.to_json
+                )
+
     @bill.paid_by = current_user.id
     @bill.paid = true
-    @chore.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
+    @bill.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
   end
+
 
   # def pay_user
   #   @venmo_user = User.where(email: current_user.email).pluck(:venmo_username)
@@ -66,6 +104,6 @@ class BillsController < ApplicationController
   end
 
   def bill_params
-    params.require(:bill).permit(:user_id, :home_id, :name, :amount, :due, :completed_at, :user_avatar)
+    params.require(:bill).permit(:user_id, :home_id, :name, :amount, :due, :paid_at, :user_avatar, :paid_by, :paid)
   end
 end

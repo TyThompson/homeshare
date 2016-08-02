@@ -10,6 +10,9 @@ Item.delete_all
 #Users
 maria = User.create(:email => 'maria@example.com', :password => 'password', paypal_email: 'maria@payment.com',
  :site_admin => true)
+
+travis = User.create(:email => 'travis@example.com', :password => 'password', paypal_email: 'travis@payment.com')
+
 ty = User.create(:email => 'ty@example.com', :password => 'password', paypal_email: 'ty@payment.com')
 erik = User.create(:email => 'erik@example.com', :password => 'password', paypal_email: 'erik@payment.com')
 
@@ -58,6 +61,10 @@ tys_userhomes = UserHome.create(:user_id => ty.id, :home_id => tys_home.id,
 
 eriks_userhomes = UserHome.create(:user_id => erik.id, :home_id => eriks_home.id,
   :exp => Chore.where(chore_completer_id: erik.id, home_id: eriks_home.id).pluck(:chore_xp).sum, :admin => "true")
+
+  #Travis is a housemate in a home Maria created:
+  travis_userhomes = UserHome.create(:user_id => travis.id, :home_id => marias_home.id,
+    :exp => Chore.where(chore_completer_id: travis.id, home_id: marias_home.id).pluck(:chore_xp).sum, :admin => "false")
 
 
 #Bills

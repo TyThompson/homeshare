@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
     get '/bills/paid', to: "bills#paid"
     resources :bills, except: [:new, :edit] do
-      post "pay", to: "payments#pay"
+      post "pay", to: "bills#pay"
       post "mark_paid", to: "bills#mark_paid"
     end
 
