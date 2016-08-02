@@ -3,7 +3,7 @@ class UserHomePolicy < ApplicationPolicy
     is_admin? || is_owner?
   end
 
-  def destroy?
+  def leave?
      is_admin? || is_owner?
   end
 

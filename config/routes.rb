@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   resources :homes, except: [:new, :edit] do
     post "invite/:friend_email", to: "homes#invite"
     # post "join", to: "homes#join"
-    resources :user_homes, except: [:new, :edit, :update]
-    get "test" => "home#test"
-
+    resources :user_homes, except: [:new, :edit, :update, :destroy, :show]
+    get "user_homes/show", to: "user_homes#show"
+    delete "user_homes/leave", to: "user_homes#leave"
     get "all_chores", to: "chores#all_chores" #gets all completed and incomplete chores
     get "chores", to: "chores#index" #gets chores that are incomplete
     post "chores", to: "chores#create"
