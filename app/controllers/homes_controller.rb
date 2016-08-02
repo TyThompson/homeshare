@@ -60,7 +60,7 @@ class HomesController < ApplicationController
   end
 
   def home_params
-    params.require(:home).permit(:name, :rent, :city, :created_at, :id, :friend_email)
+    params.require(:home).permit(:name, :rent, :city, :created_at, :id, :home_id, :friend_email)
   end
 
   def user_in_home?
