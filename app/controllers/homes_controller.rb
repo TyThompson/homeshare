@@ -39,7 +39,6 @@ class HomesController < ApplicationController
   end
 
   def invite
-    @user = current_user
     @friend = params[:friend_email]
     if user_in_home? && friend_exists?
       UserHome.create(user_id: @friend_object.id, home_id: @home.id)
