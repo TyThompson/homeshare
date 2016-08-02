@@ -106,11 +106,11 @@ end
 
 #Payments
 2.times do Payment.create(:title => Faker::Lorem.word, :description => Faker::Lorem.sentence, :amount => Faker::Commerce.price,
-  :sender_id => maria.id, :sender_paypal_email => maria.paypal_email, :recipient_id => ty.id,
-  :recipient_paypal_email => ty.paypal_email)
+  :sender_id => maria.id, :sender_paypal_email => maria.paypal, :recipient_id => ty.id,
+  :recipient_paypal_email => ty.paypal)
 end
 
 2.times do Payment.create(:title => Faker::Lorem.word, :description => Faker::Lorem.sentence, :amount => Faker::Commerce.price,
-  :sender_id => ty.id, :sender_paypal_email => ty.paypal_email, :recipient_id => maria.id,
-  :recipient_paypal_email => maria.paypal_email)
+  :sender_id => ty.id, :sender_paypal_email => ty.paypal, :recipient_id => maria.id,
+  :recipient_paypal_email => maria.paypal)
 end
