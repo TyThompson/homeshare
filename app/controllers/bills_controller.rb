@@ -60,12 +60,12 @@ class BillsController < ApplicationController
     @payment.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
     @amount = @payment.amount
     request = HTTParty.post("https://svcs.sandbox.paypal.com/AdaptivePayments/Pay",
-      headers: {"X-PAYPAL-SECURITY-USERID": "maria.cassino-facilitator_api1.gmail.com",
-                "X-PAYPAL-SECURITY-PASSWORD": "U9FL2MK962DKPXMR",
-                "X-PAYPAL-SECURITY-SIGNATURE": "AFcWxV21C7fd0v3bYYYRCpSSRl31A2tjSJXfuAz3het2TLAiz2uCt1eN",
-                "X-PAYPAL-REQUEST-DATA-FORMAT": "JSON",
-                "X-PAYPAL-RESPONSE-DATA-FORMAT": "JSON",
-                "X-PAYPAL-APPLICATION-ID": "APP-80W284485P519543T"
+      headers: {"X-PAYPAL-SECURITY-USERID" => "maria.cassino-facilitator_api1.gmail.com",
+                "X-PAYPAL-SECURITY-PASSWORD" => "U9FL2MK962DKPXMR",
+                "X-PAYPAL-SECURITY-SIGNATURE" => "AFcWxV21C7fd0v3bYYYRCpSSRl31A2tjSJXfuAz3het2TLAiz2uCt1eN",
+                "X-PAYPAL-REQUEST-DATA-FORMAT" => "JSON",
+                "X-PAYPAL-RESPONSE-DATA-FORMAT" => "JSON",
+                "X-PAYPAL-APPLICATION-ID" => "APP-80W284485P519543T"
                 },
       body:   {actionType: "PAY",
                currencyCode: "USD",
