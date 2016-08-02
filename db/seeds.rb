@@ -10,7 +10,7 @@ Item.delete_all
 
 #Users
 maria = User.create(:email => 'maria@example.com', :password => 'password', paypal: 'maria@payment.com',
- #:site_admin => true)
+ :site_admin => true)
 
 travis = User.create(:email => 'travis@example.com', :password => 'password', paypal: 'travis@payment.com')
 
