@@ -126,8 +126,6 @@ ActiveRecord::Schema.define(version: 20160802153121) do
     t.string   "avatar"
     t.string   "google_token"
     t.json     "google_data"
-    t.string   "paypal_id"
-    t.string   "paypal_token"
     t.string   "venmo_username"
     t.string   "venmo_email"
     t.string   "paypal"
