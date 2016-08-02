@@ -54,7 +54,7 @@ class HomesController < ApplicationController
     begin
       @home = Home.find params[:home_id].to_i
     rescue
-      render json: "set_home method error"
+      # render json: "set_home method error"
     end
   end
 
