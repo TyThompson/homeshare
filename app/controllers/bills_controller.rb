@@ -79,6 +79,7 @@ class BillsController < ApplicationController
     @bill.paid = true
     @bill.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
     @bill.save
+    render :payment
   end
 
 
