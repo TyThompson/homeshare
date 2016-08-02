@@ -54,7 +54,7 @@ class HomesController < ApplicationController
     begin
       @home = Home.find params[:id].to_i
     rescue
-      render :not_found
+      render json: "set_home method error"
     end
   end
 
@@ -66,7 +66,7 @@ class HomesController < ApplicationController
     begin
       UserHome.exists?(user_id: current_user.id, home_id: @home.id)
     rescue
-      render :not_found
+      render json: "user_in_home? method error"
     end
   end
 
@@ -80,7 +80,7 @@ class HomesController < ApplicationController
         return false
       end
     rescue
-      render :not_found
+      render json: "friend_exists? method error"
     end
   end
 
