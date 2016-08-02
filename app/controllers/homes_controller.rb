@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-  before_action :set_home, except: [:create, :index]
+  before_action :set_home, except: [:create, :index, :invite]
   # before_action :check_user, only: [:update, :destroy]
   # this controller is using params id as the home_id ex: /homes/:id(.:format)
   def create
@@ -39,6 +39,7 @@ class HomesController < ApplicationController
   end
 
   def invite
+    @home = Home.find params[:home_id].to_i
     @friend = params[:friend_email]
     if user_in_home? && friend_exists?
       UserHome.create(user_id: @friend_object.id, home_id: @home.id)
