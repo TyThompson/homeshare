@@ -82,7 +82,7 @@ class BillsController < ApplicationController
                 }}.to_json
                 )
 
-    @bill.paid_by = current_user.id
+    @bill.paid_by = current_user.id 
     @bill.paid = true
     @bill.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
   end
