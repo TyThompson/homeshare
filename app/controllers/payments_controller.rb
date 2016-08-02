@@ -57,12 +57,12 @@ class PaymentsController < ApplicationController
 
 
   def sent_payments
-    @payments = Payment.where(sender_paypal_email: current_user.paypal_email)
+    @payments = Payment.where(sender_paypal_email: current_user.paypal)
   end
 
 
   def received_payments
-    @payments = Payment.where(recipient_paypal_email: current_user.paypal_email)
+    @payments = Payment.where(recipient_paypal_email: current_user.paypal)
   end
 
 

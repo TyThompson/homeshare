@@ -9,13 +9,13 @@ Item.delete_all
 
 
 #Users
-maria = User.create(:email => 'maria@example.com', :password => 'password', paypal_email: 'maria@payment.com',
- :site_admin => true)
+maria = User.create(:email => 'maria@example.com', :password => 'password', paypal: 'maria@payment.com',
+ #:site_admin => true)
 
-travis = User.create(:email => 'travis@example.com', :password => 'password', paypal_email: 'travis@payment.com')
+travis = User.create(:email => 'travis@example.com', :password => 'password', paypal: 'travis@payment.com')
 
-ty = User.create(:email => 'ty@example.com', :password => 'password', paypal_email: 'ty@payment.com')
-erik = User.create(:email => 'erik@example.com', :password => 'password', paypal_email: 'erik@payment.com')
+ty = User.create(:email => 'ty@example.com', :password => 'password', paypal: 'ty@payment.com')
+erik = User.create(:email => 'erik@example.com', :password => 'password'), paypal: 'erik@payment.com')
 
 
 5.times do User.create(:email => Faker::Internet.email,

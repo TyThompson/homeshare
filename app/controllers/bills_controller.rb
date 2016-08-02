@@ -53,9 +53,9 @@ class BillsController < ApplicationController
 
 
   def pay
-    @payment = Payment.new(description: @bill.name, amount: @bill.amount, recipient_paypal_email: @bill.user.paypal_email)
-    @recipient_email = @payment.recipient_paypal_email
-    @payment.sender_paypal_email = current_user.paypal_email
+    @payment = Payment.new(description: @bill.name, amount: @bill.amount, recipient_paypal_email: @bill.user.paypal)
+    @recipient = @payment.recipient_paypal_email
+    @payment.sender_paypal_email = current_user.paypal
     @payment.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
     @amount = @payment.amount
     request = HTTParty.post("https://svcs.sandbox.paypal.com/AdaptivePayments/Pay",
@@ -71,7 +71,7 @@ class BillsController < ApplicationController
                receiverList: {
                   receiver:[
                              {amount: @amount,
-                              email: @recipient_email}
+                              email: @recipient}
                             ]
                       },
                returnUrl: "http://www.example.com/success.html",

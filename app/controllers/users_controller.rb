@@ -85,7 +85,7 @@ before_action :set_homes, except: [:create, :index, :destroy]
   end
 
   def user_params
-    params.require(:user).permit(:email, :avatar, :venmo_username, :created_at, :paypal_email)
+    params.require(:user).permit(:email, :avatar, :venmo_username, :created_at, :paypal)
   end
 
 end
