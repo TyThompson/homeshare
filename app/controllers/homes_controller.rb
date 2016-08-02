@@ -52,14 +52,14 @@ class HomesController < ApplicationController
 
   def set_home
     begin
-      @home = Home.find params[:home_id].to_i
+      @home = Home.find params[:id].to_i
     rescue
       render :not_found
     end
   end
 
   def home_params
-    params.require(:home).permit(:name, :rent, :city, :created_at, :home_id, :friend_email)
+    params.require(:home).permit(:name, :rent, :city, :created_at, :id, :friend_email)
   end
 
   def user_in_home?
