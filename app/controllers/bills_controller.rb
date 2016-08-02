@@ -82,7 +82,7 @@ class BillsController < ApplicationController
                 }}.to_json
                 )
 
-    @bill.paid_by = current_user.id 
+    @bill.paid_by = current_user.id
     @bill.paid = true
     @bill.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
   end
@@ -97,13 +97,13 @@ class BillsController < ApplicationController
 
   def set_bill
     begin
-      @bill = Bill.find_by(id: params[:id].to_i, home_id: params[:home_id].to_i)
+      @bill = Bill.find_by(id: params[:bill_id].to_i, home_id: params[:home_id].to_i)
     rescue
       render :not_found
     end
   end
 
   def bill_params
-    params.require(:bill).permit(:user_id, :home_id, :name, :amount, :due, :paid_at, :user_avatar, :paid_by, :paid)
+    params.require(:bill).permit(:user_id, :home_id, :name, :amount, :due, :paid_at, :user_avatar, :paid_by, :paid, :bill_id)
   end
 end
