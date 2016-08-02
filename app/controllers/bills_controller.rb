@@ -53,6 +53,7 @@ class BillsController < ApplicationController
 
 
   def pay
+    @bill = Bill.find_by(id: params[:bill_id].to_i, home_id: params[:home_id].to_i)
     @payment = Payment.new(description: @bill.name, amount: @bill.amount, recipient_paypal_email: @bill.user.paypal)
     @recipient = @payment.recipient_paypal_email
     @payment.sender_paypal_email = current_user.paypal
@@ -97,7 +98,7 @@ class BillsController < ApplicationController
 
   def set_bill
     begin
-      @bill = Bill.find_by(id: params[:bill_id].to_i, home_id: params[:home_id].to_i)
+      @bill = Bill.find_by(id: params[:id].to_i, home_id: params[:home_id].to_i)
     rescue
       render :not_found
     end
