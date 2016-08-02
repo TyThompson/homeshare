@@ -15,7 +15,7 @@ maria = User.create(:email => 'maria@example.com', :password => 'password', payp
 travis = User.create(:email => 'travis@example.com', :password => 'password', paypal: 'travis@payment.com')
 
 ty = User.create(:email => 'ty@example.com', :password => 'password', paypal: 'ty@payment.com')
-erik = User.create(:email => 'erik@example.com', :password => 'password'), paypal: 'erik@payment.com')
+erik = User.create(:email => 'erik@example.com', :password => 'password', paypal: 'erik@payment.com')
 
 
 5.times do User.create(:email => Faker::Internet.email,
