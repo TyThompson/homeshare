@@ -6,5 +6,4 @@ class Home < ActiveRecord::Base
   has_one :list, :dependent => :destroy
   has_many :items, through: :lists
   belongs_to :creator, class_name: 'User'
-
 end

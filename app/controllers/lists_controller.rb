@@ -1,18 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, except: [:create, :index]
-  # def parsed_data
-  #   incoming_data = request.body.read
-  #   begin
-  #     JSON.parse incoming_data
-  #   rescue
-  #     halt 400, "Request not JSON formatted"
-  #   end
-  # end
 
-  # def index
-  #   @home = Home.find_by(id: params[:home_id])
-  #   @lists = @home.lists
-  # end
 
   def show
     @list

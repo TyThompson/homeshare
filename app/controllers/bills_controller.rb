@@ -1,7 +1,5 @@
 class BillsController < ApplicationController
-  # before_action :check_login, except: [:show, :index, :search]
   before_action :set_bill, except: [:create, :index]
-  # before_action :check_user, only: [:update, :destroy]
 
   def create
     @bill = Bill.new(bill_params)
@@ -44,12 +42,6 @@ class BillsController < ApplicationController
     @bills = @home.bills.where(paid: true).all
   end
 
-  # def mark_paid #POST request to here simply marks bill as "paid", assigns current_user as payer, & timestamps payment
-  #   @bill.paid_by = current_user.id
-  #   @bill.paid = true
-  #   @bill.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
-  # end
-
 
 
   def pay
@@ -86,14 +78,10 @@ class BillsController < ApplicationController
     @bill.paid_by = current_user.id
     @bill.paid = true
     @bill.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
-    @bill.save 
+    @bill.save
   end
 
 
-  # def pay_user
-  #   @venmo_user = User.where(email: current_user.email).pluck(:venmo_username)
-  #   @venmo_payee = User.where(email: params[:payee]).pluck(:venmo_username)
-  # end
 
   private
 
