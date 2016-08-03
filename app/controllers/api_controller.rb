@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
 
- skip_before_action :authenticate_user!, only: [:register]
+ skip_before_action :authenticate_user!, only: [:register, :login, :fix_email]
 
  before_action { request.format = :json }
 
