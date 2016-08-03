@@ -5,9 +5,8 @@ class ApiController < ApplicationController
  before_action { request.format = :json }
 
   def register
-    fix_email
     @user = User.create(
-    email:        @fixed_email,
+    email:        params[:email],
     password:     params[:password]
     )
     @token = @user.generate_token_for "Angular Frontend"
@@ -15,19 +14,13 @@ class ApiController < ApplicationController
   end
 
   def login
-    fix_email
-    @user = User.find_by email: @fixed_email
+    @user = User.find_by email: params[:email]
     if @user.valid_password? params[:password]
       @token = @user.auth_tokens
       render :success_login, status: 200
     else
       render :fail_login, status: 403
     end
-  end
-
-  def fix_email
-    email = params[:email]
-    @fixed_email = email.gsub(/["]/,"")
   end
 
 end
