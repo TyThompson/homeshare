@@ -1,9 +1,7 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable#, :omniauthable
-        #  :omniauth_providers => [:google]
+         :recoverable, :rememberable, :trackable, :validatable
+         #add ,:omniauthable for Google Omniauth integration and specificy :omniauth_providers => [:google]
 
         validates :email, presence: true
         has_many :user_homes

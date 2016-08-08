@@ -15,10 +15,12 @@ class BillsController < ApplicationController
     end
   end
 
+
   def destroy
     authorize @bill
     @bill.destroy
   end
+
 
   def update
     if @bill.update(bill_params)
@@ -28,25 +30,31 @@ class BillsController < ApplicationController
     end
   end
 
+
   def index
     @home = Home.find params[:home_id].to_i
     @bills = @home.bills
   end
 
+
   def show
     @bill
   end
 
-  def paid #GET request to view house bills that have been marked as "paid"
+
+#GET request to view house bills that have been marked as "paid"
+  def paid
     @home = Home.find params[:home_id].to_i
     @bills = @home.bills.where(paid: true).all
   end
 
 
-
+#POST request to send Paypal payment of total amount of bill from current_user to
+#user who posted bill. Sandbox credentials.
   def pay
     @bill = Bill.find_by(id: params[:bill_id].to_i, home_id: params[:home_id].to_i)
-    @payment = Payment.new(description: @bill.name, amount: @bill.amount, recipient_paypal_email: @bill.user.paypal)
+    @payment = Payment.new(description: @bill.name, amount: @bill.amount,
+      recipient_paypal_email: @bill.user.paypal)
     @recipient = @payment.recipient_paypal_email
     @payment.sender_paypal_email = current_user.paypal
     @payment.paid_at = Time.now.strftime("%A, %B %e, %Y %l:%M %P %Z")
@@ -95,6 +103,7 @@ class BillsController < ApplicationController
   end
 
   def bill_params
-    params.require(:bill).permit(:user_id, :home_id, :name, :amount, :due, :paid_at, :user_avatar, :paid_by, :paid, :bill_id)
+    params.require(:bill).permit(:user_id, :home_id, :name, :amount, :due, :paid_at,
+    :user_avatar, :paid_by, :paid, :bill_id)
   end
 end
